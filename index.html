@@ -19,7 +19,7 @@
         /* Hero con video o imagen de fondo */
         .hero-bg-container {
             position: relative;
-            background-color: #000000;
+            /* Se eliminó el color de fondo negro para que el video sea visible */
             overflow: hidden;
         }
         .hero-bg-container::before {
@@ -47,7 +47,8 @@
         
         /* Estilo de la barra de navegación con blur */
         .navbar-blur {
-            background-color: rgba(0, 0, 0, 0.6);
+            /* Se redujo la opacidad del fondo del menú a 0.4 */
+            background-color: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
         }
 
