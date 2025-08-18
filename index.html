@@ -19,7 +19,6 @@
         /* Hero con video o imagen de fondo */
         .hero-bg-container {
             position: relative;
-            /* Se eliminó el color de fondo negro para que el video sea visible */
             overflow: hidden;
         }
         .hero-bg-container::before {
@@ -30,7 +29,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.6); /* Capa oscura para mejor legibilidad */
-            z-index: 1;
+            z-index: 10; /* Se ajustó el z-index para estar sobre el canvas */
         }
         
         /* CSS CORREGIDO PARA EL VIDEO DE FONDO */
@@ -108,6 +107,17 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out;
         }
+
+        /* Estilo del CANVAS para el fondo animado */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none; /* Permite que los clics pasen a los elementos de abajo */
+        }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -137,7 +147,9 @@
         </video>
 
         <section id="inicio" class="hero-bg-container flex flex-col items-center justify-center min-h-[100vh] text-center pt-24">
-            <div class="relative z-10 animate-fade-in">
+            <canvas id="hero-canvas"></canvas>
+
+            <div class="relative z-20 animate-fade-in">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
                     Hola, soy Fabricio Toso
                 </h1>
@@ -329,7 +341,6 @@
     </div>
 
     <script>
-        // Mantengo tu script de JS ya que es 100% funcional.
         window.onload = function() {
             // Lógica para mostrar mensajes de éxito/error (no alerts)
             function showMessage(text, type = 'success', duration = 3000) {
@@ -743,6 +754,69 @@
                 }
                 callDescriptionApi();
             });
+
+            // ANIMACIÓN DEL CANVAS DE FONDO
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+            const particles = [];
+            const numParticles = 80;
+            const linkDistance = 150;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            function createParticles() {
+                for (let i = 0; i < numParticles; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        radius: Math.random() * 1.5 + 1,
+                        color: '#00BFFF'
+                    });
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    const p1 = particles[i];
+                    p1.x += p1.vx;
+                    p1.y += p1.vy;
+
+                    if (p1.x < 0 || p1.x > canvas.width) p1.vx *= -1;
+                    if (p1.y < 0 || p1.y > canvas.height) p1.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p1.color;
+                    ctx.fill();
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+
+                        if (dist < linkDistance) {
+                            ctx.beginPath();
+                            ctx.moveTo(p1.x, p1.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = `rgba(0, 191, 255, ${1 - dist / linkDistance})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(draw);
+            }
+
+            createParticles();
+            draw();
         };
     </script>
 </body>
