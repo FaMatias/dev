@@ -442,7 +442,7 @@
                     try {
                         const chatHistory = [{ role: "user", parts: [{ text: llmPrompt }] }];
                         const payload = { contents: chatHistory };
-                        const apiKey = "";
+                        const apiKey = "AIzaSyCsQP-CPjlr-hfbX72bUQVcm7lapzFSIlI";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                         const response = await fetch(apiUrl, {
                             method: 'POST',
@@ -563,7 +563,7 @@
                                 }
                             }
                         };
-                        const apiKey = "";
+                        const apiKey = "AIzaSyCsQP-CPjlr-hfbX72bUQVcm7lapzFSIlI";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
                         const response = await fetch(apiUrl, {
                             method: 'POST',
@@ -640,7 +640,7 @@
                 async function callImageApi() {
                     try {
                         const payload = { instances: { prompt: prompt }, parameters: { "sampleCount": 1 } };
-                        const apiKey = "";
+                        const apiKey = "AIzaSyCsQP-CPjlr-hfbX72bUQVcm7lapzFSIlI";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
 
                         const response = await fetch(apiUrl, {
@@ -716,7 +716,7 @@
                     try {
                         const chatHistory = [{ role: "user", parts: [{ text: llmPrompt }] }];
                         const payload = { contents: chatHistory };
-                        const apiKey = "";
+                        const apiKey = "AIzaSyCsQP-CPjlr-hfbX72bUQVcm7lapzFSIlI";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                         const response = await fetch(apiUrl, {
                             method: 'POST',
