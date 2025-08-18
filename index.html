@@ -59,6 +59,10 @@
             border-radius: 9999px;
             font-weight: 600;
             transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
         .main-btn:hover {
             background-color: #008DFF;
@@ -77,6 +81,22 @@
             background-color: #1a1a1a;
             border-color: #00BFFF;
             transform: translateY(-5px);
+        }
+
+        /* Badge o Tag de proyectos */
+        .project-badge {
+            display: inline-block;
+            background-color: #1a1a1a;
+            color: #9ca3af;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease-in-out;
+        }
+        .project-badge:hover {
+            color: #00BFFF;
+            transform: translateY(-2px);
         }
         
         /* Animaciones para un look profesional */
@@ -134,7 +154,7 @@
 
         <section id="filosofia" class="py-12 md:py-24 text-center px-4 md:px-0">
             <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-8">Mi Filosofía de Trabajo</h2>
-            <div class="max-w-4xl mx-auto mt-12 text-left bg-[#0A0A0A] p-8 rounded-2xl border border-[#1a1a1a] animate-fade-in">
+            <div class="max-w-4xl mx-auto mt-12 text-left p-8 rounded-2xl animate-fade-in card">
                 <p id="filosofia-text" class="text-lg text-gray-300 mb-4">
                     Me adapto a tus necesidades con una <strong>gran relación calidad precio</strong>, con tarifas de programador web para pequeños y medianos negocios. Desarrollo web desde cero o rediseño de tu página web con un diseño moderno y elegante.
                     Con un proyecto web robusto y de calidad, darás una nueva imagen a tu negocio, conseguirás un mayor volumen de negocio con información directa a tus clientes las 24h del día. Te oriento de principio a fin desde las necesidades técnicas hasta la contratación del hosting y dominio, para que tengas tu página web terminada y lista para funcionar «llave en mano».
@@ -177,32 +197,32 @@
                 <a href="https://github.com/FaMatias/Sistema_inventarios" target="_blank" class="card block p-6 rounded-xl hover:shadow-2xl">
                     <h3 class="text-xl font-bold text-white mb-1">Sistema de Inventarios</h3>
                     <p class="text-gray-400 mb-4">Un sistema de gestión de inventarios hecho a medida para un cliente.</p>
-                    <span class="inline-block bg-[#00BFFF] text-black text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                    <span class="project-badge">Web App</span>
                 </a>
                 <a href="https://github.com/FaMatias/Vinos_Argentina" target="_blank" class="card block p-6 rounded-xl hover:shadow-2xl">
                     <h3 class="text-xl font-bold text-white mb-1">Vinos Argentina</h3>
                     <p class="text-gray-400 mb-4">Una aplicación web para explorar y gestionar datos sobre vinos argentinos.</p>
-                    <span class="inline-block bg-[#00BFFF] text-black text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                    <span class="project-badge">Web App</span>
                 </a>
                 <a href="https://github.com/FaMatias/Stock-de-Vinos-Ex-ticos" target="_blank" class="card block p-6 rounded-xl hover:shadow-2xl">
                     <h3 class="text-xl font-bold text-white mb-1">Stock de Vinos Exóticos</h3>
                     <p class="text-gray-400 mb-4">Plataforma de gestión de stock para una colección de vinos especializados.</p>
-                    <span class="inline-block bg-[#00BFFF] text-black text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                    <span class="project-badge">Web App</span>
                 </a>
                 <a href="https://famatias.github.io/Simple-Links/index.html" target="_blank" class="card block p-6 rounded-xl hover:shadow-2xl">
                     <h3 class="text-xl font-bold text-white mb-1">Simple-Links</h3>
                     <p class="text-gray-400 mb-4">Una página de enlaces personalizada para perfiles sociales.</p>
-                    <span class="inline-block bg-[#00BFFF] text-black text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                    <span class="project-badge">Web App</span>
                 </a>
                 <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="card block p-6 rounded-xl hover:shadow-2xl">
                     <h3 class="text-xl font-bold text-white mb-1">Pizarra Colaborativa</h3>
                     <p class="text-gray-400 mb-4">Aplicación de pizarra en tiempo real para trabajo en equipo.</p>
-                    <span class="inline-block bg-[#00BFFF] text-black text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                    <span class="project-badge">Web App</span>
                 </a>
                 <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="card block p-6 rounded-xl hover:shadow-2xl">
                     <h3 class="text-xl font-bold text-white mb-1">Tablero Kanban</h3>
                     <p class="text-gray-400 mb-4">Herramienta para organizar tareas en un tablero visual.</p>
-                    <span class="inline-block bg-[#00BFFF] text-black text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                    <span class="project-badge">Web App</span>
                 </a>
             </div>
         </section>
@@ -266,21 +286,21 @@
                     <button type="button" id="analyze-project-btn" class="main-btn w-full mt-4">
                         <i class="fas fa-magic mr-2"></i>✨ Analizar Proyecto ✨
                     </button>
-                    <button type="submit" class="w-full main-btn mt-2 bg-[#1a1a1a] text-white hover:bg-[#333333] transition-colors duration-300 transform hover:scale-105">
+                    <button type="submit" class="w-full main-btn mt-2">
                         Enviar Presupuesto
                     </button>
                 </form>
                 <div class="flex items-center justify-center space-x-6 mt-8">
-                    <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" class="text-white hover:text-[#00BFFF] transition-colors">
+                    <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" class="text-white hover:text-[#00BFFF] transition-colors p-2 rounded-full hover:bg-[#1a1a1a]">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
-                    <a href="#" class="text-white hover:text-[#00BFFF] transition-colors">
+                    <a href="#" class="text-white hover:text-[#00BFFF] transition-colors p-2 rounded-full hover:bg-[#1a1a1a]">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
-                    <a href="#" class="text-white hover:text-[#00BFFF] transition-colors">
+                    <a href="#" class="text-white hover:text-[#00BFFF] transition-colors p-2 rounded-full hover:bg-[#1a1a1a]">
                         <i class="fab fa-twitter fa-2x"></i>
                     </a>
-                    <a href="https://www.instagram.com/fa.matias/" target="_blank" class="text-white hover:text-[#00BFFF] transition-colors">
+                    <a href="https://www.instagram.com/fa.matias/" target="_blank" class="text-white hover:text-[#00BFFF] transition-colors p-2 rounded-full hover:bg-[#1a1a1a]">
                         <i class="fab fa-instagram fa-2x"></i>
                     </a>
                 </div>
