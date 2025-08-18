@@ -32,16 +32,16 @@
             background: rgba(0,0,0,0.6); /* Capa oscura para mejor legibilidad */
             z-index: 1;
         }
+        
+        /* CSS CORREGIDO PARA EL VIDEO DE FONDO */
         .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            position: fixed; /* Esto lo ancla al fondo de la pantalla */
+            top: 0;
+            left: 0;
             min-width: 100%;
             min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            z-index: 0;
+            z-index: -1; /* Lo envía detrás de todo el contenido */
+            object-fit: cover; /* Asegura que cubra todo el espacio sin distorsionarse */
             opacity: 0.6; /* Un poco de opacidad para que el texto resalte */
         }
         
@@ -109,12 +109,13 @@
                 Contacto
             </a>
         </nav>
+        
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="videos/video.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
 
         <section id="inicio" class="hero-bg-container flex flex-col items-center justify-center min-h-[100vh] text-center pt-24">
-            <video autoplay loop muted playsinline class="hero-video">
-                <source src="videos/video.mp4" type="video/mp4">
-                Tu navegador no soporta el tag de video.
-            </video>
             <div class="relative z-10 animate-fade-in">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
                     Hola, soy Fabricio Toso
@@ -725,4 +726,3 @@
     </script>
 </body>
 </html>
-
