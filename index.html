@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Fabricio Matías Toso | Software de Alto Impacto</title>
-    <meta name="description" content="Desarrollador Full Stack especializado en soluciones a medida, biotecnología aplicada e integración de Inteligencia Artificial en Zaragoza, España.">
-    
+    <title>Fabricio Matías Toso | Consultoría & Desarrollo de Software Full Stack</title>
+    <meta name="description" content="Fabricio Matías Toso: Desarrollador Full Stack especializado en soluciones a medida, biotecnología aplicada e integración de Inteligencia Artificial en Zaragoza, España.">
+    <meta name="keywords" content="Fabricio Toso, Desarrollador Web Zaragoza, Full Stack Developer, Biotecnología, Inteligencia Artificial, Java, Spring Boot, Angular, Freelance IT">
+    <meta name="author" content="Fabricio Matías Toso">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://famatias.github.io/dev/">
+    <meta property="og:title" content="Fabricio Matías Toso | Software de Alto Impacto">
+    <meta property="og:description" content="Especialista en desarrollo Full Stack e integración de IA. Soluciones tecnológicas robustas para proyectos exigentes.">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/108632622?v=4"> 
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -21,9 +33,10 @@
         .card { background-color: #1e293b; border: 1px solid #334155; transition: all 0.3s ease; }
         .card:hover { transform: translateY(-5px); border-color: #38bdf8; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         
-        /* Estilos para el resultado de la IA (Listas y negritas) */
+        /* CORRECCIÓN 2: Estilos para que la respuesta de la IA se vea bonita y ordenada */
         .prose-ai strong { color: #38bdf8; }
-        .prose-ai ul { list-style-type: disc; padding-left: 1.5rem; margin-top: 0.5rem; }
+        .prose-ai p { margin-bottom: 0.75rem; }
+        .prose-ai ul { list-style-type: disc; padding-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem;}
     </style>
 </head>
 <body class="bg-slate-900">
@@ -48,7 +61,7 @@
             Especialista en <span id="typing-effect" class="text-sky-400 font-bold"></span>
         </p>
         <p class="text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed text-sm md:text-base">
-            Fusiono la precisión técnica de la industria con el desarrollo de software para construir herramientas digitales robustas, escalables y orientadas a objetivos.
+            Fusiono la precisión técnica con el desarrollo de software de alto nivel para construir herramientas digitales robustas, escalables y orientadas a objetivos.
         </p>
         <div class="flex flex-col md:flex-row gap-4 justify-center">
             <a href="#contacto" class="main-btn">Impulsa tu proyecto</a>
@@ -63,17 +76,17 @@
         <div class="card p-8 rounded-3xl text-left">
             <i class="fas fa-layer-group text-sky-400 text-3xl mb-6"></i>
             <h3 class="text-xl font-bold mb-4">Desarrollo Full Stack</h3>
-            <p class="text-slate-400 text-sm">Arquitecturas modernas (Java, Spring Boot, Angular) diseñadas para la estabilidad y la escalabilidad del negocio.</p>
+            <p class="text-slate-400 text-sm">Arquitecturas modernas (Java, Spring Boot, Angular) diseñadas para la estabilidad y el crecimiento del negocio.</p>
         </div>
         <div class="card p-8 rounded-3xl text-left">
             <i class="fab fa-wordpress text-sky-400 text-3xl mb-6"></i>
-            <h3 class="text-xl font-bold mb-4">Soluciones E-Commerce</h3>
-            <p class="text-slate-400 text-sm">Desarrollo a medida y optimización técnica de SEO para tiendas online e inventarios de alto tráfico.</p>
+            <h3 class="text-xl font-bold mb-4">Ecosistemas WordPress</h3>
+            <p class="text-slate-400 text-sm">Desarrollo a medida, optimización técnica de SEO y seguridad avanzada para portales corporativos.</p>
         </div>
         <div class="card p-8 rounded-3xl text-left">
             <i class="fas fa-robot text-sky-400 text-3xl mb-6"></i>
             <h3 class="text-xl font-bold mb-4">Integración de IA</h3>
-            <p class="text-slate-400 text-sm">Implementación de modelos de lenguaje para automatizar tareas complejas y optimizar la operativa industrial.</p>
+            <p class="text-slate-400 text-sm">Implementación de modelos de lenguaje para automatizar tareas complejas y optimizar la toma de decisiones.</p>
         </div>
     </div>
 </section>
@@ -84,8 +97,7 @@
         <div class="grid md:grid-cols-2 gap-10 text-left items-center">
             <div class="card p-6 md:p-8 rounded-3xl">
                 <h3 class="text-xl font-bold mb-4 text-sky-300"><i class="fas fa-microchip mr-2"></i> Consultor Estratégico AI</h3>
-                <p class="text-xs text-slate-500 mb-4">Escribe un problema de tu empresa y la IA te dará una solución técnica rápida.</p>
-                <textarea id="ai-prompt" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-sm mb-6 outline-none focus:border-sky-500 transition text-white" placeholder="Ej: ¿Cómo puedo mejorar el control de stock en mi almacén?"></textarea>
+                <textarea id="ai-prompt" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-sm mb-6 outline-none focus:border-sky-500 transition text-white" placeholder="Plantea un desafío técnico o una idea de negocio..."></textarea>
                 <button id="run-ai-btn" class="w-full main-btn flex justify-center items-center gap-2">
                     <i class="fas fa-bolt"></i> Analizar Propuesta
                 </button>
@@ -96,7 +108,7 @@
             <div class="flex flex-col justify-center">
                 <h3 class="text-2xl font-bold mb-4">Capacidades de Vanguardia</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Integro APIs de última generación (como la familia Gemini de Google) para dotar a las aplicaciones de capacidades cognitivas: desde el análisis de datos industriales hasta la automatización inteligente de flujos de trabajo.
+                    Integro APIs de última generación (como Gemini 1.5 Flash) para dotar a las aplicaciones de capacidades cognitivas: desde análisis de sentimientos hasta automatización inteligente.
                 </p>
                 <div class="inline-block bg-slate-900 border border-sky-400/30 px-4 py-2 rounded-lg text-sky-400 font-bold tracking-widest text-xs uppercase">
                     <i class="fas fa-check-circle mr-1"></i> Tecnología lista para producción
@@ -107,21 +119,23 @@
 </section>
 
 <footer id="contacto" class="py-16 text-center">
-    <h2 class="text-4xl font-bold text-white mb-8">¿Hablamos de tu proyecto?</h2>
+    <h2 class="text-4xl font-bold text-white mb-8 italic">¿Hablamos?</h2>
     <div class="flex justify-center space-x-8 mb-8">
         <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" aria-label="LinkedIn" class="text-slate-400 hover:text-sky-400 transition-all text-3xl hover:scale-110"><i class="fab fa-linkedin"></i></a>
         <a href="https://github.com/FaMatias" target="_blank" aria-label="GitHub" class="text-slate-400 hover:text-sky-400 transition-all text-3xl hover:scale-110"><i class="fab fa-github"></i></a>
         <a href="mailto:fabricio.toso@gmail.com" aria-label="Email" class="text-slate-400 hover:text-sky-400 transition-all text-3xl hover:scale-110"><i class="fas fa-envelope"></i></a>
     </div>
-    <p class="text-xs text-slate-500 uppercase tracking-widest">&copy; 2026 Fabricio Matías Toso | Zaragoza, España</p>
+    <p class="text-xs text-slate-600 uppercase tracking-widest">&copy; 2026 Fabricio Matías Toso | Zaragoza, España</p>
 </footer>
 
 <script>
-    // 🔴 IMPORTANTE: REEMPLAZA ESTO CON UNA NUEVA API KEY DESDE GOOGLE AI STUDIO 🔴
-    const API_KEY = "TU_NUEVA_API_KEY_AQUI"; 
+    // TU LLAVE API ORIGINAL 
+    // Consejo experto: Entra a Google Cloud Console y ponle una restricción "HTTP Referrer" 
+    // permitiendo solo peticiones desde "https://famatias.github.io/*" para evitar robos.
+    const API_KEY = "AIzaSyDyzYxFZm-UN6DY-PVzDI3WJdbRGd9rJ30"; 
 
-    // Efecto de máquina de escribir
-    const phrases = ["Desarrollo Full Stack", "Integración de IA", "Soluciones Industriales", "Arquitectura de Software"];
+    // Efecto Typing
+    const phrases = ["Desarrollo Full Stack", "Soluciones de IA", "Ecosistemas WordPress", "Arquitectura de Software"];
     let i = 0, j = 0, isDeleting = false;
     function type() {
         const current = phrases[i];
@@ -132,7 +146,7 @@
     }
     type();
 
-    // IA Lab con parseo de Markdown
+    // IA Lab - CORRECCIÓN 3: Petición Real con Parseo de Markdown
     const runAiBtn = document.getElementById('run-ai-btn');
     const aiResult = document.getElementById('ai-result');
 
@@ -149,17 +163,21 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{ parts: [{ text: `Actúa como un CTO experto en desarrollo de software y sector industrial. Analiza en un párrafo breve (máximo 4 líneas) y da una recomendación sobre esta idea: ${prompt}` }] }]
+                    contents: [{ parts: [{ text: `Actúa como un CTO y consultor experto. Analiza brevemente en formato profesional y da una recomendación técnica/profesional sobre esta idea: ${prompt}` }] }]
                 })
             });
+            
+            if (!response.ok) throw new Error('Error en la API');
+            
             const data = await response.json();
             const rawText = data.candidates[0].content.parts[0].text;
             
-            // Usamos marked.js para convertir el texto a HTML (para que se vean las negritas y listas)
+            // La magia de Marked.js: Convierte la respuesta cruda de Gemini en HTML perfecto
             aiResult.innerHTML = marked.parse(rawText);
             
         } catch (error) {
-            aiResult.innerHTML = "<p class='text-red-400'>Error de conexión. Asegúrate de haber colocado tu API Key válida en el código.</p>";
+            aiResult.innerHTML = "<p class='text-red-400'>Error en la conexión. Si el error persiste, comprueba la configuración de la API Key en Google AI Studio.</p>";
+            console.error("Error de la API:", error);
         } finally {
             runAiBtn.disabled = false;
             runAiBtn.innerHTML = '<i class="fas fa-bolt"></i> Analizar Propuesta';
