@@ -1,187 +1,787 @@
+
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Fabricio Matías Toso | Consultoría & Desarrollo de Software Full Stack</title>
-    <meta name="description" content="Fabricio Matías Toso: Desarrollador Full Stack especializado en soluciones a medida, biotecnología aplicada e integración de Inteligencia Artificial en Zaragoza, España.">
-    <meta name="keywords" content="Fabricio Toso, Desarrollador Web Zaragoza, Full Stack Developer, Biotecnología, Inteligencia Artificial, Java, Spring Boot, Angular, Freelance IT">
+    <title>Fabricio Toso | Operador de Planta & Full Stack Developer</title>
+    <meta name="description" content="Fabricio Matías Toso: Operador de Planta Especializado con +8 años en potabilización y SCADA. Full Stack Java, Spring Boot, Angular, SQL, Python. PEAC Aragón. Zaragoza.">
+    <meta name="keywords" content="Fabricio Toso, Operador de Planta Zaragoza, SCADA, Potabilización, Full Stack Developer, Java, Spring Boot, Angular, Biotecnología, PEAC, Veolia, tratamiento de aguas">
     <meta name="author" content="Fabricio Matías Toso">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://famatias.github.io/dev/">
-    <meta property="og:title" content="Fabricio Matías Toso | Software de Alto Impacto">
-    <meta property="og:description" content="Especialista en desarrollo Full Stack e integración de IA. Soluciones tecnológicas robustas para proyectos exigentes.">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/108632622?v=4"> 
+    <meta property="og:title" content="Fabricio Toso | Perfil Técnico Híbrido">
+    <meta property="og:description" content="Operador de Planta con +8 años en SCADA y potabilización. Full Stack Java · Angular. T.S. Biotecnología. PEAC Aragón.">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/108632622?v=4">
     <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0F172A; color: #E2E8F0; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .navbar-blur { background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(56, 189, 248, 0.1); }
-        .main-btn { background-color: #2563EB; color: white; padding: 0.8rem 2rem; border-radius: 9999px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-        .main-btn:hover { background-color: #1E40AF; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
-        .card { background-color: #1e293b; border: 1px solid #334155; transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-5px); border-color: #38bdf8; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
         
-        /* CORRECCIÓN 2: Estilos para que la respuesta de la IA se vea bonita y ordenada */
-        .prose-ai strong { color: #38bdf8; }
-        .prose-ai p { margin-bottom: 0.75rem; }
-        .prose-ai ul { list-style-type: disc; padding-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem;}
+        body { font-family: 'Inter', sans-serif; background-color: #0F172A; color: #E2E8F0; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+
+        .navbar-blur {
+            background-color: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        /* Hero gradient */
+        .hero-bg {
+            background: radial-gradient(ellipse at 20% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+                        #0F172A;
+        }
+
+        /* Cards */
+        .card-glass {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255,255,255,0.07);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .card-glass:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #0ea5e9, #10b981, transparent);
+        }
+        .timeline-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: #0ea5e9;
+            border: 2px solid #0F172A;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.6);
+            flex-shrink: 0;
+        }
+        .timeline-dot.green {
+            background: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Skills pills */
+        .pill-industrial { background: rgba(14, 165, 233, 0.1); color: #7dd3fc; border: 1px solid rgba(14, 165, 233, 0.25); }
+        .pill-tech { background: rgba(16, 185, 129, 0.1); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.25); }
+        .pill-science { background: rgba(139, 92, 246, 0.1); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.25); }
+
+        /* Progress bars */
+        .progress-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.08);
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: linear-gradient(to right, #0ea5e9, #10b981);
+            transition: width 1.5s ease;
+            width: 0%;
+        }
+
+        /* Main CTA */
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+            color: white;
+            font-weight: 600;
+            border-radius: 9999px;
+            padding: 0.85rem 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4); }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #cbd5e1;
+            font-weight: 600;
+            border-radius: 9999px;
+            padding: 0.85rem 2rem;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.07); color: white; }
+
+        /* Section headers */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #0ea5e9;
+        }
+
+        /* Typing cursor */
+        .cursor { animation: blink 0.8s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Scroll animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Project card accent */
+        .project-accent-blue { border-left: 3px solid #0ea5e9; }
+        .project-accent-green { border-left: 3px solid #10b981; }
+        .project-accent-purple { border-left: 3px solid #8b5cf6; }
+
+        /* Contact form */
+        .input-field {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 0.85rem 1.2rem;
+            color: #e2e8f0;
+            width: 100%;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+        .input-field:focus { border-color: #0ea5e9; }
+        .input-field::placeholder { color: #64748b; }
     </style>
 </head>
+
 <body class="bg-slate-900">
 
-<nav class="fixed top-0 left-0 right-0 z-50 navbar-blur p-4 flex items-center justify-between px-4 md:px-8">
-    <a href="#" class="flex items-center space-x-2 text-sky-400 font-bold text-lg md:text-xl tracking-tight">
-        <i class="fas fa-code"></i> <span>Fabricio Toso</span>
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 navbar-blur px-4 md:px-8 py-4 flex items-center justify-between">
+    <a href="../" class="flex items-center gap-2 text-sky-400 font-bold text-lg tracking-tight hover:text-sky-300 transition">
+        <span class="text-xl">💧</span>
+        <span>Fabricio Toso</span>
     </a>
-    <div class="hidden md:flex items-center space-x-6 text-sm font-medium uppercase tracking-widest">
-        <a href="#inicio" class="hover:text-sky-400 transition">Inicio</a>
-        <a href="#soluciones" class="hover:text-sky-400 transition">Soluciones</a>
-        <a href="#ia-lab" class="hover:text-sky-400 transition">IA Lab</a>
-        <a href="#contacto" class="hover:text-sky-400 transition">Contacto</a>
-        <a href="../index.html" class="ml-4 border border-sky-400 text-sky-400 px-4 py-2 rounded-full hover:bg-sky-400 hover:text-slate-900 transition">Perfil Industrial</a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#sobre-mi" class="text-slate-400 hover:text-sky-400 transition uppercase tracking-wider text-xs">Sobre mí</a>
+        <a href="#experiencia" class="text-slate-400 hover:text-sky-400 transition uppercase tracking-wider text-xs">Experiencia</a>
+        <a href="#habilidades" class="text-slate-400 hover:text-sky-400 transition uppercase tracking-wider text-xs">Habilidades</a>
+        <a href="#proyectos" class="text-slate-400 hover:text-sky-400 transition uppercase tracking-wider text-xs">Proyectos</a>
+        <a href="#contacto" class="ml-2 border border-sky-500 text-sky-400 px-4 py-2 rounded-full hover:bg-sky-500 hover:text-white transition text-xs font-semibold">Contactar</a>
     </div>
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
 </nav>
 
-<section id="inicio" class="min-h-screen flex flex-col items-center justify-center text-center p-4 md:p-6 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-slate-800 via-slate-900 to-slate-900">
-    <div class="max-w-4xl p-6 md:p-10 rounded-3xl border border-sky-400/10 bg-slate-900/40 backdrop-blur-md mt-16 md:mt-0">
-        <h1 class="text-4xl md:text-7xl font-extrabold text-white mb-6">Software a medida.<br> <span class="text-sky-500">Resultados reales.</span></h1>
-        <p class="text-lg md:text-2xl text-slate-300 mb-8 font-light">
-            Especialista en <span id="typing-effect" class="text-sky-400 font-bold"></span>
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed top-16 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 py-4 px-6 hidden">
+    <div class="flex flex-col gap-4 text-sm">
+        <a href="#sobre-mi" class="text-slate-300 hover:text-sky-400 transition py-2 border-b border-slate-800">Sobre mí</a>
+        <a href="#experiencia" class="text-slate-300 hover:text-sky-400 transition py-2 border-b border-slate-800">Experiencia</a>
+        <a href="#habilidades" class="text-slate-300 hover:text-sky-400 transition py-2 border-b border-slate-800">Habilidades</a>
+        <a href="#proyectos" class="text-slate-300 hover:text-sky-400 transition py-2 border-b border-slate-800">Proyectos</a>
+        <a href="#contacto" class="text-sky-400 font-semibold py-2">Contactar</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section id="inicio" class="hero-bg min-h-screen flex items-center justify-center px-4 pt-20 pb-12">
+    <div class="max-w-4xl w-full text-center">
+        <div class="mb-6 flex justify-center">
+            <span class="px-4 py-2 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-semibold uppercase tracking-wider">
+                🇦🇷 → 🇪🇸 · Disponible en Zaragoza · PEAC Aragón en proceso
+            </span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+            Fabricio Matías Toso
+        </h1>
+
+        <div class="text-xl md:text-2xl text-sky-400 font-semibold mb-6 h-8">
+            <span id="typing-text"></span><span class="cursor text-sky-300">|</span>
+        </div>
+
+        <p class="text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed text-base md:text-lg">
+            Perfil técnico híbrido: <strong class="text-slate-200">8 años operando plantas potabilizadoras</strong> con SCADA, 
+            más formación Full Stack en Java, Angular y Python. 
+            Busco incorporarme al sector <strong class="text-slate-200">industrial y medioambiental</strong> de Zaragoza.
         </p>
-        <p class="text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed text-sm md:text-base">
-            Fusiono la precisión técnica con el desarrollo de software de alto nivel para construir herramientas digitales robustas, escalables y orientadas a objetivos.
-        </p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <a href="#contacto" class="main-btn">Impulsa tu proyecto</a>
-            <a href="#ia-lab" class="px-8 py-3 rounded-full border border-slate-700 hover:bg-slate-800 transition font-semibold">Probar Demos de IA</a>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <a href="#contacto" class="btn-primary">Contactar ahora</a>
+            <a href="#experiencia" class="btn-secondary">Ver experiencia</a>
+        </div>
+
+        <!-- Stats rápidos -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+            <div class="card-glass rounded-2xl p-4">
+                <div class="text-2xl font-bold text-sky-400 mb-1">8+</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">años en planta</div>
+            </div>
+            <div class="card-glass rounded-2xl p-4">
+                <div class="text-2xl font-bold text-emerald-400 mb-1">SCADA</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">control de procesos</div>
+            </div>
+            <div class="card-glass rounded-2xl p-4">
+                <div class="text-2xl font-bold text-violet-400 mb-1">3</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">titulaciones técnicas</div>
+            </div>
+            <div class="card-glass rounded-2xl p-4">
+                <div class="text-2xl font-bold text-amber-400 mb-1">NIE</div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide">permiso de trabajo</div>
+            </div>
         </div>
     </div>
 </section>
 
-<section id="soluciones" class="py-24 px-6 max-w-6xl mx-auto text-center">
-    <h2 class="text-3xl md:text-5xl font-bold text-white mb-16">Soluciones Tecnológicas</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card p-8 rounded-3xl text-left">
-            <i class="fas fa-layer-group text-sky-400 text-3xl mb-6"></i>
-            <h3 class="text-xl font-bold mb-4">Desarrollo Full Stack</h3>
-            <p class="text-slate-400 text-sm">Arquitecturas modernas (Java, Spring Boot, Angular) diseñadas para la estabilidad y el crecimiento del negocio.</p>
+<!-- SOBRE MÍ -->
+<section id="sobre-mi" class="py-24 px-4 md:px-8 max-w-6xl mx-auto reveal">
+    <div class="text-center mb-16">
+        <p class="section-label mb-3">Quién soy</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white">Perfil Técnico Híbrido</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center flex-shrink-0 text-xl">💧</div>
+                <div>
+                    <h3 class="font-bold text-white mb-2">Especialista en Operaciones de Planta</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">8 años y 5 meses en Aguas Cordobesas S.A. como Operador de Planta Especializado. Dominio completo del ciclo de potabilización: dosificación de reactivos, análisis físico-químicos, operación SCADA y mantenimiento preventivo de equipos industriales.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-xl">💻</div>
+                <div>
+                    <h3 class="font-bold text-white mb-2">Desarrollador Full Stack</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Técnico Superior en Desarrollo Web (Java, Spring Boot, Angular, SQL, Python). Proyectos de portfolio orientados a automatización y gestión de datos industriales. Actualmente cursando GS en Sistemas de Telecomunicaciones e Informáticos.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 text-xl">🧬</div>
+                <div>
+                    <h3 class="font-bold text-white mb-2">Técnico en Biotecnología</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Formación en gestión de procesos productivos biotecnológicos, análisis de laboratorio y aplicación de tecnología a procesos industriales y medioambientales.</p>
+                </div>
+            </div>
         </div>
-        <div class="card p-8 rounded-3xl text-left">
-            <i class="fab fa-wordpress text-sky-400 text-3xl mb-6"></i>
-            <h3 class="text-xl font-bold mb-4">Ecosistemas WordPress</h3>
-            <p class="text-slate-400 text-sm">Desarrollo a medida, optimización técnica de SEO y seguridad avanzada para portales corporativos.</p>
-        </div>
-        <div class="card p-8 rounded-3xl text-left">
-            <i class="fas fa-robot text-sky-400 text-3xl mb-6"></i>
-            <h3 class="text-xl font-bold mb-4">Integración de IA</h3>
-            <p class="text-slate-400 text-sm">Implementación de modelos de lenguaje para automatizar tareas complejas y optimizar la toma de decisiones.</p>
+
+        <div class="card-glass rounded-3xl p-8">
+            <div class="flex items-center gap-4 mb-6">
+                <img src="https://github.com/FaMatias.png" alt="Fabricio Toso" class="w-16 h-16 rounded-full border-2 border-sky-500/30">
+                <div>
+                    <div class="font-bold text-white">Fabricio Matías Toso</div>
+                    <div class="text-sky-400 text-sm">Zaragoza, España</div>
+                </div>
+            </div>
+            <div class="space-y-3 text-sm">
+                <div class="flex items-center gap-3 text-slate-300">
+                    <i class="fas fa-map-marker-alt text-sky-400 w-4"></i>
+                    Casco Antiguo, Zaragoza · NIE en regla
+                </div>
+                <div class="flex items-center gap-3 text-slate-300">
+                    <i class="fas fa-certificate text-emerald-400 w-4"></i>
+                    PEAC Aragón — SEAG0209 (en proceso)
+                </div>
+                <div class="flex items-center gap-3 text-slate-300">
+                    <i class="fas fa-graduation-cap text-violet-400 w-4"></i>
+                    GS Telecomunicaciones — IES Río Gallego
+                </div>
+                <div class="flex items-center gap-3 text-slate-300">
+                    <i class="fas fa-car text-amber-400 w-4"></i>
+                    Carnet B · Disponible PLAZA / Utebo / Malpica
+                </div>
+                <div class="flex items-center gap-3 text-slate-300">
+                    <i class="fas fa-language text-slate-400 w-4"></i>
+                    Español nativo · Inglés B1 · Italiano
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-slate-700">
+                <div class="text-xs text-slate-500 uppercase tracking-wider mb-3">Objetivo laboral</div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-sky-500/10 text-sky-300 text-xs border border-sky-500/20">Operador de Planta</span>
+                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs border border-emerald-500/20">Técnico de Ensayos</span>
+                    <span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-300 text-xs border border-violet-500/20">Automatización</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section id="ia-lab" class="py-24 bg-slate-950 px-6 border-y border-slate-800">
-    <div class="max-w-5xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-sky-400 mb-12">Showcase: Inteligencia Artificial</h2>
-        <div class="grid md:grid-cols-2 gap-10 text-left items-center">
-            <div class="card p-6 md:p-8 rounded-3xl">
-                <h3 class="text-xl font-bold mb-4 text-sky-300"><i class="fas fa-microchip mr-2"></i> Consultor Estratégico AI</h3>
-                <textarea id="ai-prompt" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-sm mb-6 outline-none focus:border-sky-500 transition text-white" placeholder="Plantea un desafío técnico o una idea de negocio..."></textarea>
-                <button id="run-ai-btn" class="w-full main-btn flex justify-center items-center gap-2">
-                    <i class="fas fa-bolt"></i> Analizar Propuesta
+<!-- EXPERIENCIA -->
+<section id="experiencia" class="py-24 bg-slate-950/50 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto reveal">
+        <div class="text-center mb-16">
+            <p class="section-label mb-3">Trayectoria</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Experiencia Profesional</h2>
+        </div>
+
+        <div class="relative pl-12">
+            <div class="timeline-line"></div>
+
+            <!-- Aguas Cordobesas -->
+            <div class="relative mb-12">
+                <div class="timeline-dot absolute -left-[29px] top-1"></div>
+                <div class="card-glass rounded-2xl p-6 md:p-8">
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Operador de Planta Especializado</h3>
+                            <div class="text-sky-400 font-semibold text-sm mt-1">Aguas Cordobesas S.A. — Córdoba, Argentina</div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 rounded-full bg-sky-500/10 text-sky-300 text-xs border border-sky-500/20">Dic 2015 – May 2024</span>
+                            <div class="text-slate-500 text-xs mt-1">8 años 5 meses</div>
+                        </div>
+                    </div>
+                    <ul class="text-slate-400 text-sm space-y-2 mb-4">
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Operación y control de planta potabilizadora de abastecimiento urbano a gran escala mediante sistema <strong class="text-slate-300">SCADA</strong></li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Dosificación y preparación de reactivos: coagulantes, floculantes, cloro gas y ácido clorhídrico</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Análisis físico-químicos: pH, turbidez, color, conductividad, cloro residual. <strong class="text-slate-300">Ensayos Jar-test</strong></li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Mantenimiento preventivo de <strong class="text-slate-300">bombas centrífugas</strong>, dosificadoras y equipos de medición</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Supervisión de Estación Elevadora y operación de equipos de izaje</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Capacitación continua: EPP, espacios confinados, trabajo en altura, RCP, emergencias industriales</li>
+                    </ul>
+                    <div class="pt-3 border-t border-slate-700/50 text-xs text-emerald-400">
+                        <i class="fas fa-file-alt mr-1"></i> Certificado oficial emitido por Gerencia de RRHH — Abril 2026
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEG -->
+            <div class="relative mb-12">
+                <div class="timeline-dot absolute -left-[29px] top-1"></div>
+                <div class="card-glass rounded-2xl p-6 md:p-8">
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Operario de Mecanizado de Precisión</h3>
+                            <div class="text-sky-400 font-semibold text-sm mt-1">WEG Motores Eléctricos — Córdoba, Argentina</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-slate-700/60 text-slate-300 text-xs border border-slate-600">Oct 2014 – Dic 2015</span>
+                    </div>
+                    <ul class="text-slate-400 text-sm space-y-2">
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Producción y mecanizado de piezas para motores eléctricos industriales</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Uso de <strong class="text-slate-300">torno CNC, fresa, mandrinadora, rectificadora y laminadora</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FIAT -->
+            <div class="relative mb-12">
+                <div class="timeline-dot absolute -left-[29px] top-1"></div>
+                <div class="card-glass rounded-2xl p-6 md:p-8">
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Operario de Montaje Final</h3>
+                            <div class="text-sky-400 font-semibold text-sm mt-1">FIAT Chrysler Automobiles — Córdoba, Argentina</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-slate-700/60 text-slate-300 text-xs border border-slate-600">Mar 2013 – Oct 2014</span>
+                    </div>
+                    <ul class="text-slate-400 text-sm space-y-2">
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Montaje final de autopartes sobre carrocería en línea de producción industrial</li>
+                        <li class="flex items-start gap-2"><span class="text-sky-400 mt-0.5">▸</span> Trabajo bajo presión de tiempos, uso de herramientas neumáticas y ensamblaje en cadena</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Eroski -->
+            <div class="relative mb-4">
+                <div class="timeline-dot green absolute -left-[29px] top-1"></div>
+                <div class="card-glass rounded-2xl p-6 md:p-8 border-emerald-500/20">
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Reposición & Transformación Retail</h3>
+                            <div class="text-emerald-400 font-semibold text-sm mt-1">Eroski — Zaragoza, España</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs border border-emerald-500/20">2024 – Actualidad</span>
+                    </div>
+                    <p class="text-slate-400 text-sm italic">Trabajo puente durante proceso de homologación y acreditación de competencias en España (PEAC — Aragón). Incorporación proactiva al mercado laboral español desde la llegada al país.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades" class="py-24 px-4 md:px-8 max-w-6xl mx-auto reveal">
+    <div class="text-center mb-16">
+        <p class="section-label mb-3">Stack técnico</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white">Habilidades</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Industrial -->
+        <div class="card-glass rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-sky-500/15 flex items-center justify-center text-sky-400">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h3 class="font-bold text-white">Industrial & Planta</h3>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Operación SCADA</span>
+                        <span class="text-sky-400 text-xs">Avanzado</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="92"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Potabilización & Procesos</span>
+                        <span class="text-sky-400 text-xs">Experto</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Análisis físico-químico</span>
+                        <span class="text-sky-400 text-xs">Avanzado</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="88"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Mant. Preventivo / Bombas</span>
+                        <span class="text-sky-400 text-xs">Avanzado</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Mecanizado CNC</span>
+                        <span class="text-sky-400 text-xs">Intermedio</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="70"></div></div>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-2">
+                <span class="pill-industrial text-xs px-2 py-1 rounded-full">Jar-test</span>
+                <span class="pill-industrial text-xs px-2 py-1 rounded-full">EPP</span>
+                <span class="pill-industrial text-xs px-2 py-1 rounded-full">Esp. Confinados</span>
+                <span class="pill-industrial text-xs px-2 py-1 rounded-full">Trab. Altura</span>
+                <span class="pill-industrial text-xs px-2 py-1 rounded-full">RCP</span>
+            </div>
+        </div>
+
+        <!-- Tech -->
+        <div class="card-glass rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="font-bold text-white">Desarrollo de Software</h3>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Java / Spring Boot</span>
+                        <span class="text-emerald-400 text-xs">Intermedio</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="70"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Angular / TypeScript</span>
+                        <span class="text-emerald-400 text-xs">Intermedio</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="65"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">SQL / MySQL</span>
+                        <span class="text-emerald-400 text-xs">Intermedio</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="72"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Python</span>
+                        <span class="text-emerald-400 text-xs">Básico-Intermedio</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="55"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">HTML / CSS / JS</span>
+                        <span class="text-emerald-400 text-xs">Avanzado</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-2">
+                <span class="pill-tech text-xs px-2 py-1 rounded-full">Git</span>
+                <span class="pill-tech text-xs px-2 py-1 rounded-full">REST APIs</span>
+                <span class="pill-tech text-xs px-2 py-1 rounded-full">Tailwind</span>
+                <span class="pill-tech text-xs px-2 py-1 rounded-full">IA Integrations</span>
+                <span class="pill-tech text-xs px-2 py-1 rounded-full">Bootstrap</span>
+            </div>
+        </div>
+
+        <!-- Science -->
+        <div class="card-glass rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-violet-500/15 flex items-center justify-center text-violet-400">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3 class="font-bold text-white">Ciencias & Formación</h3>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Biotecnología Industrial</span>
+                        <span class="text-violet-400 text-xs">T.S. Acreditado</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Telecomunicaciones</span>
+                        <span class="text-violet-400 text-xs">En curso</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="50"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-slate-300">Electricidad (Cat. III)</span>
+                        <span class="text-violet-400 text-xs">Habilitado UNC</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" data-width="75"></div></div>
+                </div>
+            </div>
+            <div class="mt-6 space-y-3">
+                <div class="bg-slate-900/60 rounded-xl p-3 text-xs">
+                    <div class="text-violet-300 font-semibold mb-1">📋 PEAC Aragón</div>
+                    <div class="text-slate-400">SEAG0209 — Operaciones de Tratamiento de Aguas (en proceso 2025/2026)</div>
+                </div>
+                <div class="bg-slate-900/60 rounded-xl p-3 text-xs">
+                    <div class="text-sky-300 font-semibold mb-1">🏭 Certificado Aguas Cordobesas</div>
+                    <div class="text-slate-400">Operador de Planta Especializado — Emitido RRHH Abril 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos" class="py-24 bg-slate-950/50 px-4 md:px-8 reveal">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="section-label mb-3">Portfolio</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Proyectos</h2>
+            <p class="text-slate-500 text-sm mt-3 max-w-lg mx-auto">Proyectos de desarrollo personal orientados a consolidar el stack tecnológico y explorar aplicaciones industriales</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="card-glass rounded-2xl p-6 project-accent-blue">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-2xl">📦</span>
+                    <a href="https://github.com/FaMatias/Sistema_inventarios" target="_blank" class="text-slate-500 hover:text-sky-400 transition text-sm">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+                <h3 class="font-bold text-white mb-2">Sistema de Inventarios</h3>
+                <p class="text-slate-400 text-sm mb-4">Aplicación web de gestión de inventarios con CRUD completo y base de datos relacional.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="px-2 py-0.5 bg-sky-500/10 text-sky-300 text-xs rounded-full border border-sky-500/20">Java</span>
+                    <span class="px-2 py-0.5 bg-sky-500/10 text-sky-300 text-xs rounded-full border border-sky-500/20">SQL</span>
+                    <span class="px-2 py-0.5 bg-sky-500/10 text-sky-300 text-xs rounded-full border border-sky-500/20">Web App</span>
+                </div>
+            </div>
+
+            <div class="card-glass rounded-2xl p-6 project-accent-green">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-2xl">🍷</span>
+                    <a href="https://github.com/FaMatias/Vinos_Argentina" target="_blank" class="text-slate-500 hover:text-sky-400 transition text-sm">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+                <h3 class="font-bold text-white mb-2">Stock de Vinos Exóticos</h3>
+                <p class="text-slate-400 text-sm mb-4">Plataforma de gestión de stock con filtros, categorización y panel de control visual.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-300 text-xs rounded-full border border-emerald-500/20">Angular</span>
+                    <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-300 text-xs rounded-full border border-emerald-500/20">TypeScript</span>
+                    <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-300 text-xs rounded-full border border-emerald-500/20">SQL</span>
+                </div>
+            </div>
+
+            <div class="card-glass rounded-2xl p-6 project-accent-purple">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-2xl">🔗</span>
+                    <a href="https://famatias.github.io/Simple-Links/" target="_blank" class="text-slate-500 hover:text-sky-400 transition text-sm">
+                        <i class="fas fa-external-link-alt"></i> Demo
+                    </a>
+                </div>
+                <h3 class="font-bold text-white mb-2">Simple Links</h3>
+                <p class="text-slate-400 text-sm mb-4">Página de enlaces personalizada tipo Linktree. Diseño responsive y despliegue en GitHub Pages.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="px-2 py-0.5 bg-violet-500/10 text-violet-300 text-xs rounded-full border border-violet-500/20">HTML/CSS</span>
+                    <span class="px-2 py-0.5 bg-violet-500/10 text-violet-300 text-xs rounded-full border border-violet-500/20">JavaScript</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-10">
+            <a href="https://github.com/FaMatias" target="_blank" class="btn-secondary inline-flex items-center gap-2">
+                <i class="fab fa-github"></i> Ver todos los repositorios en GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="py-24 px-4 md:px-8 max-w-4xl mx-auto reveal">
+    <div class="text-center mb-16">
+        <p class="section-label mb-3">Hablemos</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white">Contacto</h2>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto">Disponible para incorporación inmediata en Zaragoza y área metropolitana (PLAZA, Utebo, Malpica).</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+            <a href="mailto:fabricio.toso@gmail.com" class="card-glass rounded-2xl p-5 flex items-center gap-4 hover:border-sky-500/40 transition group">
+                <div class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 group-hover:bg-sky-500/20 transition">
+                    <i class="fas fa-envelope text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Email</div>
+                    <div class="text-white font-semibold text-sm">fabricio.toso@gmail.com</div>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/fabricio-matias-toso" target="_blank" class="card-glass rounded-2xl p-5 flex items-center gap-4 hover:border-sky-500/40 transition group">
+                <div class="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-600/20 transition">
+                    <i class="fab fa-linkedin text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">LinkedIn</div>
+                    <div class="text-white font-semibold text-sm">fabricio-matias-toso</div>
+                </div>
+            </a>
+            <a href="https://github.com/FaMatias" target="_blank" class="card-glass rounded-2xl p-5 flex items-center gap-4 hover:border-sky-500/40 transition group">
+                <div class="w-12 h-12 rounded-xl bg-slate-700/40 flex items-center justify-center text-slate-300 group-hover:bg-slate-700/60 transition">
+                    <i class="fab fa-github text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">GitHub</div>
+                    <div class="text-white font-semibold text-sm">github.com/FaMatias</div>
+                </div>
+            </a>
+            <div class="card-glass rounded-2xl p-5 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                    <i class="fas fa-phone text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Teléfono</div>
+                    <div class="text-white font-semibold text-sm">+34 665 83 79 59</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-glass rounded-2xl p-6">
+            <h3 class="font-bold text-white mb-6 text-sm uppercase tracking-wider">Enviar mensaje</h3>
+                <form id="contact-form" class="space-y-4">
+                <input type="text" placeholder="Tu nombre" class="input-field" required>
+                <input type="email" placeholder="Tu email" class="input-field" required>
+                <input type="text" placeholder="Empresa / Asunto" class="input-field">
+                <textarea rows="4" placeholder="Tu mensaje..." class="input-field resize-none" required></textarea>
+                <button type="button" onclick="handleContactForm()" class="btn-primary w-full flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Enviar mensaje
                 </button>
-                <div id="ai-result" class="mt-8 p-4 bg-slate-900/50 rounded-xl text-sm text-slate-300 border-t border-slate-700 min-h-[120px] prose-ai">
-                    El análisis aparecerá aquí...
-                </div>
-            </div>
-            <div class="flex flex-col justify-center">
-                <h3 class="text-2xl font-bold mb-4">Capacidades de Vanguardia</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Integro APIs de última generación (como Gemini 1.5 Flash) para dotar a las aplicaciones de capacidades cognitivas: desde análisis de sentimientos hasta automatización inteligente.
-                </p>
-                <div class="inline-block bg-slate-900 border border-sky-400/30 px-4 py-2 rounded-lg text-sky-400 font-bold tracking-widest text-xs uppercase">
-                    <i class="fas fa-check-circle mr-1"></i> Tecnología lista para producción
-                </div>
-            </div>
+                <p class="text-xs text-slate-500 text-center">Este formulario abre tu cliente de correo</p>
+            </form>
         </div>
     </div>
 </section>
 
-<footer id="contacto" class="py-16 text-center">
-    <h2 class="text-4xl font-bold text-white mb-8 italic">¿Hablamos?</h2>
-    <div class="flex justify-center space-x-8 mb-8">
-        <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" aria-label="LinkedIn" class="text-slate-400 hover:text-sky-400 transition-all text-3xl hover:scale-110"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/FaMatias" target="_blank" aria-label="GitHub" class="text-slate-400 hover:text-sky-400 transition-all text-3xl hover:scale-110"><i class="fab fa-github"></i></a>
-        <a href="mailto:fabricio.toso@gmail.com" aria-label="Email" class="text-slate-400 hover:text-sky-400 transition-all text-3xl hover:scale-110"><i class="fas fa-envelope"></i></a>
+<!-- FOOTER -->
+<footer class="py-10 px-4 border-t border-slate-800 text-center">
+    <div class="flex justify-center items-center gap-2 text-slate-400 text-sm mb-2">
+        <span class="text-sky-400 font-semibold">Fabricio Matías Toso</span>
+        <span>·</span>
+        <span>Zaragoza, España</span>
+        <span>·</span>
+        <a href="../" class="hover:text-sky-400 transition">Perfil Industrial</a>
     </div>
-    <p class="text-xs text-slate-600 uppercase tracking-widest">&copy; 2026 Fabricio Matías Toso | Zaragoza, España</p>
+    <p class="text-xs text-slate-600 uppercase tracking-widest">© 2026 · Todos los derechos reservados</p>
 </footer>
 
 <script>
-    // TU LLAVE API ORIGINAL 
-    // Consejo experto: Entra a Google Cloud Console y ponle una restricción "HTTP Referrer" 
-    // permitiendo solo peticiones desde "https://famatias.github.io/*" para evitar robos.
-    const API_KEY = "AIzaSyDyzYxFZm-UN6DY-PVzDI3WJdbRGd9rJ30"; 
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-    // Efecto Typing
-    const phrases = ["Desarrollo Full Stack", "Soluciones de IA", "Ecosistemas WordPress", "Arquitectura de Software"];
+    // Typing effect
+    const phrases = [
+        "Operador de Planta & SCADA",
+        "Full Stack Java · Angular",
+        "T.S. Biotecnología",
+        "PEAC Aragón — SEAG0209"
+    ];
     let i = 0, j = 0, isDeleting = false;
     function type() {
         const current = phrases[i];
-        document.getElementById('typing-effect').textContent = isDeleting ? current.substring(0, j--) : current.substring(0, j++);
+        document.getElementById('typing-text').textContent = isDeleting
+            ? current.substring(0, j--)
+            : current.substring(0, j++);
         if (!isDeleting && j > current.length) { isDeleting = true; setTimeout(type, 2000); }
-        else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % phrases.length; setTimeout(type, 500); }
-        else { setTimeout(type, isDeleting ? 40 : 80); }
+        else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % phrases.length; setTimeout(type, 400); }
+        else { setTimeout(type, isDeleting ? 35 : 75); }
     }
     type();
 
-    // IA Lab - CORRECCIÓN 3: Petición Real con Parseo de Markdown
-    const runAiBtn = document.getElementById('run-ai-btn');
-    const aiResult = document.getElementById('ai-result');
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Animate progress bars when visible
+                entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+                    bar.style.width = bar.dataset.width + '%';
+                });
+            }
+        });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
 
-    runAiBtn.addEventListener('click', async () => {
-        const prompt = document.getElementById('ai-prompt').value;
-        if (!prompt) return;
-        
-        runAiBtn.disabled = true;
-        runAiBtn.innerHTML = '<i class="fas fa-sync fa-spin"></i> Procesando...';
-        aiResult.innerHTML = "<p class='text-center text-sky-400 animate-pulse'>Analizando mediante Gemini AI...</p>";
-        
-        try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: `Actúa como un CTO y consultor experto. Analiza brevemente en formato profesional y da una recomendación técnica/profesional sobre esta idea: ${prompt}` }] }]
-                })
-            });
-            
-            if (!response.ok) throw new Error('Error en la API');
-            
-            const data = await response.json();
-            const rawText = data.candidates[0].content.parts[0].text;
-            
-            // La magia de Marked.js: Convierte la respuesta cruda de Gemini en HTML perfecto
-            aiResult.innerHTML = marked.parse(rawText);
-            
-        } catch (error) {
-            aiResult.innerHTML = "<p class='text-red-400'>Error en la conexión. Si el error persiste, comprueba la configuración de la API Key en Google AI Studio.</p>";
-            console.error("Error de la API:", error);
-        } finally {
-            runAiBtn.disabled = false;
-            runAiBtn.innerHTML = '<i class="fas fa-bolt"></i> Analizar Propuesta';
+    // Also animate first visible bars
+    document.querySelectorAll('.progress-fill').forEach(bar => {
+        if (bar.closest('.reveal')) return;
+        setTimeout(() => bar.style.width = bar.dataset.width + '%', 500);
+    });
+
+    // Contact form — opens mailto
+    function handleContactForm() {
+        const inputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
+        const name = inputs[0].value;
+        const email = inputs[1].value;
+        const subject = inputs[2].value || 'Contacto desde portfolio';
+        const message = inputs[3].value;
+        if (!name || !email || !message) {
+            alert('Por favor completa nombre, email y mensaje.');
+            return;
         }
+        const body = `Nombre: ${name}\nEmail: ${email}\n\n${message}`;
+        window.location.href = `mailto:fabricio.toso@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    // Smooth nav highlight
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        let current = '';
+        sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - 100) current = s.id;
+        });
+        navLinks.forEach(link => {
+            link.classList.toggle('text-sky-400', link.getAttribute('href') === '#' + current);
+        });
     });
 </script>
 </body>
