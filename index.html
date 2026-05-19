@@ -1,1094 +1,654 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fabricio Toso — Operador de Planta & Dev Industrial</title>
-  <meta name="description" content="8+ años operando plantas potabilizadoras con SCADA. Full Stack Java · Angular · Python. Disponible en Zaragoza. PEAC Aragón en proceso."/>
-  <meta name="author" content="Fabricio Matías Toso"/>
-  <meta property="og:title" content="Fabricio Toso — Operador de Planta & Dev Industrial"/>
-  <meta property="og:description" content="8+ años en SCADA y potabilización. Full Stack Java · Angular. Zaragoza."/>
-  <meta property="og:image" content="https://avatars.githubusercontent.com/u/108632622?v=4"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabricio Toso — Planta & Código</title>
+    <meta name="description" content="Especialista en digitalización de procesos industriales, biotecnología y automatización de sistemas de tratamiento de agua.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #0a0b0e;
+            --bg-card: #12141c;
+            --bg-terminal: #161922;
+            --accent: #00f0ff;
+            --accent-warn: #ffaa00;
+            --accent-crit: #ff3b3b;
+            --accent-success: #39ff14;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #222735;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
-    :root {
-      --bg:     #09090b;
-      --bg2:    #0f0f12;
-      --line:   rgba(255,255,255,0.08);
-      --water:  #38bdf8;
-      --acid:   #a3e635;
-      --white:  #f1f5f9;
-      --steel:  #64748b;
-      --muted:  #334155;
-      --syne:   'Syne', sans-serif;
-      --dm:     'DM Sans', sans-serif;
-      --mono:   'DM Mono', monospace;
-    }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+        code, pre, .terminal-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
 
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: var(--dm);
-      font-weight: 300;
-      overflow-x: hidden;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    a { color: inherit; text-decoration: none; }
+        header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
 
-    /* ── GRAIN ── */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    }
+        .nav-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(1.5rem, 4vw, 3rem);
-      height: 58px;
-      background: rgba(9,9,11,0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-logo {
-      font-family: var(--syne);
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: -0.02em;
-    }
-    .nav-logo em { font-style: normal; color: var(--water); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--steel);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-hire {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--acid);
-      border: 1px solid rgba(163,230,53,0.35);
-      padding: 0.38rem 1rem;
-      border-radius: 100px;
-      transition: all 0.2s;
-    }
-    .nav-hire:hover { background: var(--acid); color: #09090b; }
+        .tagline {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
 
-    #nav-btn { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
-    #nav-btn span { display: block; width: 20px; height: 1.5px; background: var(--steel); }
-    #mob-menu {
-      display: none; position: fixed; top: 58px; inset-x: 0; z-index: 99;
-      background: rgba(9,9,11,0.97); border-bottom: 1px solid var(--line);
-      flex-direction: column; padding: 1.5rem clamp(1.5rem,4vw,3rem) 2rem; gap: 0;
-    }
-    #mob-menu.open { display: flex; }
-    #mob-menu a {
-      font-family: var(--mono); font-size: 0.8rem; color: var(--steel);
-      padding: 1rem 0; border-bottom: 1px solid var(--line); transition: color 0.2s;
-    }
-    #mob-menu a:hover { color: var(--white); }
+        h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            border-left: 4px solid var(--accent);
+            padding-left: 12px;
+        }
 
-    @media(max-width:768px) {
-      .nav-links, .nav-hire { display: none; }
-      #nav-btn { display: flex; }
-    }
+        p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 clamp(1.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
-      position: relative; overflow: hidden;
-    }
+        .grid-2 {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
 
-    .hero-bg-word {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--syne);
-      font-size: clamp(9rem, 24vw, 22rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.025);
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      line-height: 1;
-    }
+        @media (min-width: 992px) {
+            .grid-2 {
+                flex-direction: row;
+            }
+            .col-left { flex: 1; }
+            .col-right { flex: 1; }
+        }
 
-    .hero-topbar {
-      position: absolute;
-      top: 58px; left: 0; right: 0;
-      padding: clamp(1rem,2vw,1.5rem) clamp(1.5rem,5vw,4rem);
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid var(--line);
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: var(--steel);
-      text-transform: uppercase;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .hero-topbar .live {
-      display: flex; align-items: center; gap: 0.5rem; color: var(--acid);
-    }
-    .hero-topbar .live::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--acid);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
 
-    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
 
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--water);
-      margin-bottom: 1.5rem;
-    }
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .hero-name {
-      font-family: var(--syne);
-      font-weight: 800;
-      font-size: clamp(3.8rem, 11vw, 9.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 2rem;
-    }
-    .hero-name .water { color: var(--water); }
+        .card-title i { color: var(--accent); }
 
-    .hero-bottom {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
+        /* Estilos de Consola / SCADA */
+        .terminal {
+            background-color: var(--bg-terminal);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
 
-    .hero-statement {
-      max-width: 440px;
-      font-size: clamp(1rem, 2vw, 1.15rem);
-      line-height: 1.65;
-      color: var(--steel);
-      font-weight: 300;
-    }
-    .hero-statement strong { color: var(--white); font-weight: 500; }
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
 
-    .hero-cta-group {
-      display: flex; flex-direction: column; align-items: flex-end; gap: 1rem;
-      flex-shrink: 0;
-    }
+        .scada-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
 
-    .btn-hire {
-      font-family: var(--syne);
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.01em;
-      background: var(--water);
-      color: #09090b;
-      padding: 0.9rem 2.2rem;
-      border-radius: 100px;
-      transition: all 0.25s;
-      white-space: nowrap;
-    }
-    .btn-hire:hover { background: #7dd3fc; transform: translateY(-2px); }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-success);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
 
-    .btn-scroll {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: flex; align-items: center; gap: 0.5rem;
-      transition: color 0.2s;
-    }
-    .btn-scroll:hover { color: var(--steel); }
-    .btn-scroll::after { content: '↓'; font-size: 0.8rem; }
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
 
-    /* ── TICKER ── */
-    .ticker-wrap {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      overflow: hidden;
-      padding: 0.9rem 0;
-      background: var(--bg2);
-    }
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      animation: ticker 28s linear infinite;
-    }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .ticker-item {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--steel);
-      padding: 0 2.5rem;
-      white-space: nowrap;
-    }
-    .ticker-item .dot {
-      display: inline-block;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--water);
-      vertical-align: middle;
-      margin-right: 2.5rem;
-    }
+        .form-group {
+            margin-bottom: 18px;
+        }
 
-    /* ── SECTIONS ── */
-    .s { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
-    .s-inner { max-width: 1100px; margin: 0 auto; }
+        .form-group label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
 
-    .s-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--water);
-      margin-bottom: 3rem;
-      display: flex; align-items: center; gap: 1rem;
-    }
-    .s-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+        .form-control {
+            width: 100%;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px;
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
 
-    /* reveal */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-    .reveal.d1 { transition-delay: 0.1s; }
-    .reveal.d2 { transition-delay: 0.2s; }
-    .reveal.d3 { transition-delay: 0.3s; }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
 
-    /* ── IDENTIDAD ── */
-    #identidad { background: var(--bg2); }
+        .btn {
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-    .identity-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: start;
-    }
+        .btn:hover:not(:disabled) {
+            background-color: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
 
-    .big-statement {
-      font-family: var(--syne);
-      font-weight: 700;
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin-bottom: 1.8rem;
-    }
-    .big-statement .accent { color: var(--water); }
+        .btn:disabled {
+            color: var(--text-muted);
+            border-color: var(--border);
+            cursor: not-allowed;
+        }
 
-    .identity-body {
-      color: var(--steel);
-      font-size: 1rem;
-      line-height: 1.75;
-      max-width: 520px;
-    }
-    .identity-body p { margin-bottom: 1.1rem; }
-    .identity-body p:last-child { margin-bottom: 0; }
-    .identity-body strong { color: var(--white); font-weight: 500; }
+        .output-box {
+            background-color: var(--bg-main);
+            border-left: 4px solid var(--border);
+            padding: 18px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            border-radius: 0 6px 6px 0;
+            min-height: 90px;
+        }
 
-    .fact-stack { display: flex; flex-direction: column; gap: 1px; }
+        .output-box.process { border-left-color: var(--accent); background-color: rgba(0, 240, 255, 0.02); }
+        .output-box.warn { border-left-color: var(--accent-warn); background-color: rgba(255, 170, 0, 0.02); }
+        .output-box.crit { border-left-color: var(--accent-crit); background-color: rgba(255, 59, 59, 0.02); }
+        .output-box.success { border-left-color: var(--accent-success); background-color: rgba(57, 255, 20, 0.02); }
 
-    .fact-block {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--line);
-      padding: 1.2rem 1.5rem;
-      transition: background 0.25s;
-    }
-    .fact-block:first-child { border-radius: 6px 6px 0 0; }
-    .fact-block:last-child  { border-radius: 0 0 6px 6px; }
-    .fact-block:not(:first-child) { border-top: none; }
-    .fact-block:hover { background: rgba(56,189,248,0.05); }
+        /* Barras de progreso industriales */
+        .progress-bar-bg {
+            background-color: var(--bg-main);
+            height: 8px;
+            border-radius: 4px;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
 
-    .fact-key {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-    .fact-val {
-      font-size: 0.9rem;
-      color: var(--white);
-      font-weight: 400;
-      line-height: 1.4;
-    }
-    .fact-val .sub {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--steel);
-      margin-top: 0.1rem;
-    }
+        .progress-bar-fill {
+            background-color: var(--accent);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
 
-    .peac-chip {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      color: var(--acid);
-      border: 1px solid rgba(163,230,53,0.25);
-      background: rgba(163,230,53,0.05);
-      padding: 0.3rem 0.7rem;
-      border-radius: 100px;
-      margin-top: 0.4rem;
-    }
-    .peac-chip::before {
-      content: '';
-      width: 5px; height: 5px;
-      border-radius: 50%; background: var(--acid);
-      animation: blink 2s infinite;
-    }
+        /* Celda de simulación de color químico */
+        .vial-preview {
+            width: 100%;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background-color: rgba(255,255,255,0.03);
+            transition: background-color 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
 
-    @media(max-width:768px) { .identity-grid { grid-template-columns: 1fr; } }
+        .badge {
+            display: inline-block;
+            background-color: rgba(0, 240, 255, 0.08);
+            color: var(--accent);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
 
-    /* ── TRAYECTORIA ── */
-    #trayectoria { background: var(--bg); }
-
-    .exp-cards { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    .exp-card {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 0;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: border-color 0.25s;
-    }
-    .exp-card:hover { border-color: rgba(56,189,248,0.3); }
-
-    .exp-side {
-      background: rgba(255,255,255,0.02);
-      border-right: 1px solid var(--line);
-      padding: 1.5rem 1.2rem;
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .exp-period {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .exp-duration {
-      font-family: var(--syne);
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--water);
-      line-height: 1;
-    }
-    .exp-duration small {
-      display: block;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      font-weight: 400;
-      margin-top: 0.2rem;
-    }
-
-    .exp-main { padding: 1.5rem 2rem; }
-    .exp-role {
-      font-family: var(--syne);
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 0.2rem;
-    }
-    .exp-company {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      color: var(--water);
-      margin-bottom: 1rem;
-    }
-    .exp-desc {
-      font-size: 0.9rem;
-      color: var(--steel);
-      line-height: 1.7;
-      margin-bottom: 1.2rem;
-      max-width: 560px;
-    }
-    .exp-desc strong { color: var(--white); font-weight: 500; }
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.22rem 0.6rem;
-      border-radius: 3px;
-    }
-    .tag-blue  { color: var(--water); border: 1px solid rgba(56,189,248,0.25); background: rgba(56,189,248,0.06); }
-    .tag-green { color: var(--acid);  border: 1px solid rgba(163,230,53,0.25); background: rgba(163,230,53,0.05); }
-    .tag-ghost { color: var(--muted); border: 1px solid var(--line); }
-
-    .exp-verified {
-      margin-top: 0.8rem;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: #34d399;
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .exp-verified::before { content: '✓'; }
-
-    @media(max-width:640px) {
-      .exp-card { grid-template-columns: 1fr; }
-      .exp-side { border-right: none; border-bottom: 1px solid var(--line); flex-direction: row; align-items: center; gap: 1.5rem; }
-    }
-
-    /* ── STACK ── */
-    #stack { background: var(--bg2); }
-
-    .stack-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .stack-group-title {
-      font-family: var(--syne);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .pill-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
-    .pill {
-      font-family: var(--dm);
-      font-size: 0.82rem;
-      font-weight: 400;
-      padding: 0.45rem 1rem;
-      border-radius: 100px;
-      transition: all 0.2s;
-      cursor: default;
-    }
-    .pill:hover { transform: translateY(-1px); }
-    .pill-a { background: rgba(56,189,248,0.1);  color: #7dd3fc; border: 1px solid rgba(56,189,248,0.2); }
-    .pill-b { background: rgba(163,230,53,0.08); color: #bef264; border: 1px solid rgba(163,230,53,0.2); }
-    .pill-c { background: rgba(255,255,255,0.04); color: var(--steel); border: 1px solid var(--line); }
-
-    @media(max-width:640px) { .stack-layout { grid-template-columns: 1fr; gap: 2rem; } }
-
-    /* ── PROYECTOS ── */
-    #proyectos { background: var(--bg); }
-
-    .proj-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
-      gap: 1rem;
-    }
-
-    .proj-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 1.6rem;
-      background: rgba(255,255,255,0.02);
-      display: flex; flex-direction: column;
-      transition: all 0.25s;
-    }
-    .proj-card:hover {
-      background: rgba(56,189,248,0.04);
-      border-color: rgba(56,189,248,0.25);
-      transform: translateY(-3px);
-    }
-    .proj-idx {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.8rem;
-    }
-    .proj-name {
-      font-family: var(--syne);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.6rem;
-    }
-    .proj-desc {
-      font-size: 0.83rem;
-      color: var(--steel);
-      line-height: 1.6;
-      flex: 1;
-      margin-bottom: 1.2rem;
-    }
-    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
-    .proj-link {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--water);
-      display: flex; align-items: center; gap: 0.4rem;
-      transition: gap 0.2s;
-      margin-top: auto;
-    }
-    .proj-link:hover { gap: 0.7rem; }
-    .proj-link::after { content: '→'; }
-
-    /* ── CONTACTO ── */
-    #contacto { background: var(--bg2); }
-
-    .contact-hero {
-      font-family: var(--syne);
-      font-weight: 800;
-      font-size: clamp(2.5rem, 7vw, 6rem);
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 3rem;
-    }
-    .contact-hero .accent { color: var(--water); }
-
-    .contact-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .contact-text {
-      font-size: 0.95rem;
-      color: var(--steel);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-    .contact-text strong { color: var(--white); font-weight: 500; }
-
-    .contact-row { display: flex; flex-direction: column; gap: 0.6rem; }
-    .c-link {
-      display: flex; align-items: center;
-      gap: 1rem; padding: 1rem 1.2rem;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      font-size: 0.87rem;
-      color: var(--steel);
-      background: rgba(255,255,255,0.02);
-      transition: all 0.2s;
-    }
-    .c-link:hover {
-      border-color: rgba(56,189,248,0.3);
-      background: rgba(56,189,248,0.04);
-      color: var(--white);
-    }
-    .c-link-icon {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--water);
-      min-width: 28px;
-      letter-spacing: 0.05em;
-    }
-    .c-link-label { flex: 1; }
-    .c-link-arr { color: var(--muted); font-size: 0.75rem; transition: color 0.2s; }
-    .c-link:hover .c-link-arr { color: var(--water); }
-
-    .avail-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .avail-top {
-      padding: 1.2rem 1.5rem;
-      background: rgba(163,230,53,0.04);
-      border-bottom: 1px solid var(--line);
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--acid);
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .avail-top::before {
-      content: ''; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--acid);
-      animation: blink 2s infinite;
-    }
-    .avail-body {
-      padding: 1.5rem;
-      font-size: 0.87rem;
-      color: var(--steel);
-      line-height: 1.7;
-    }
-    .avail-body p { margin-bottom: 0.9rem; }
-    .avail-body p:last-child { margin-bottom: 0; }
-    .avail-body strong { color: var(--white); font-weight: 500; }
-
-    @media(max-width:768px) { .contact-split { grid-template-columns: 1fr; gap: 2rem; } }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 1.4rem clamp(1.5rem,5vw,4rem);
-      display: flex; justify-content: space-between; align-items: center;
-      background: var(--bg);
-    }
-    .footer-l {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
-    .footer-l span { color: var(--water); }
-    .footer-r {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--muted);
-    }
-  </style>
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Fabricio <em>Toso</em></div>
-  <ul class="nav-links">
-    <li><a href="#identidad">Identidad</a></li>
-    <li><a href="#trayectoria">Trayectoria</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#proyectos">Proyectos</a></li>
-  </ul>
-  <a href="mailto:fabricio.toso@gmail.com" class="nav-hire">Contratar</a>
-  <button id="nav-btn" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div id="mob-menu">
-  <a href="#identidad">Identidad</a>
-  <a href="#trayectoria">Trayectoria</a>
-  <a href="#stack">Stack</a>
-  <a href="#proyectos">Proyectos</a>
-  <a href="#contacto">Contactar</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg-word">Planta</div>
-
-  <div class="hero-topbar">
-    <span>Fabricio Matías Toso · Zaragoza</span>
-    <span class="live">Disponible</span>
-    <span>PEAC Aragón en proceso</span>
-  </div>
-
-  <div class="hero-content">
-    <p class="hero-eyebrow">🇦🇷 → 🇪🇸 · Operador de Planta & Dev Industrial</p>
-
-    <h1 class="hero-name">
-      Ocho<br/>años en<br/><span class="water">planta.</span>
-    </h1>
-
-    <div class="hero-bottom">
-      <p class="hero-statement">
-        SCADA, análisis físico-químicos, dosificación de reactivos, mantenimiento de bombas.
-        <strong>Más formación Full Stack</strong> para cerrar el ciclo entre la planta y el software que la controla.
-      </p>
-      <div class="hero-cta-group">
-        <a href="mailto:fabricio.toso@gmail.com" class="btn-hire">Contactar</a>
-        <a href="#trayectoria" class="btn-scroll">Ver trayectoria</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <span class="ticker-item"><span class="dot"></span>SCADA</span>
-    <span class="ticker-item"><span class="dot"></span>Potabilización</span>
-    <span class="ticker-item"><span class="dot"></span>Jar-test</span>
-    <span class="ticker-item"><span class="dot"></span>Bombas centrífugas</span>
-    <span class="ticker-item"><span class="dot"></span>Java · Spring Boot</span>
-    <span class="ticker-item"><span class="dot"></span>Angular</span>
-    <span class="ticker-item"><span class="dot"></span>Python</span>
-    <span class="ticker-item"><span class="dot"></span>Biotecnología</span>
-    <span class="ticker-item"><span class="dot"></span>PEAC Aragón</span>
-    <span class="ticker-item"><span class="dot"></span>Análisis físico-químico</span>
-    <span class="ticker-item"><span class="dot"></span>Zaragoza disponible</span>
-    <span class="ticker-item"><span class="dot"></span>Espacios confinados</span>
-    <span class="ticker-item"><span class="dot"></span>SCADA</span>
-    <span class="ticker-item"><span class="dot"></span>Potabilización</span>
-    <span class="ticker-item"><span class="dot"></span>Jar-test</span>
-    <span class="ticker-item"><span class="dot"></span>Bombas centrífugas</span>
-    <span class="ticker-item"><span class="dot"></span>Java · Spring Boot</span>
-    <span class="ticker-item"><span class="dot"></span>Angular</span>
-    <span class="ticker-item"><span class="dot"></span>Python</span>
-    <span class="ticker-item"><span class="dot"></span>Biotecnología</span>
-    <span class="ticker-item"><span class="dot"></span>PEAC Aragón</span>
-    <span class="ticker-item"><span class="dot"></span>Análisis físico-químico</span>
-    <span class="ticker-item"><span class="dot"></span>Zaragoza disponible</span>
-    <span class="ticker-item"><span class="dot"></span>Espacios confinados</span>
-  </div>
-</div>
-
-<!-- IDENTIDAD -->
-<section id="identidad" class="s">
-  <div class="s-inner">
-    <div class="s-label reveal">01 · Quién soy</div>
-
-    <div class="identity-grid">
-      <div class="reveal d1">
-        <h2 class="big-statement">
-          No soy junior.<br/>
-          Tengo ocho años<br/>
-          haciendo que<br/>
-          <span class="accent">el agua funcione.</span>
-        </h2>
-        <div class="identity-body">
-          <p>
-            Operé plantas potabilizadoras de abastecimiento urbano en <strong>Aguas Cordobesas S.A.</strong> durante más de ocho años. Eso implica turno nocturno, alarmas de SCADA, análisis en laboratorio, decisiones de dosificación en tiempo real y mantenimiento de equipos que no pueden parar.
-          </p>
-          <p>
-            Además estudié Desarrollo Web Full Stack y Biotecnología. No para vender servicios freelance — para <strong>entender el sistema completo</strong>: desde la válvula hasta el software que la monitorea.
-          </p>
-          <p>
-            Estoy en Zaragoza, con NIE en regla y disponibilidad inmediata. Buscando reincorporarme al sector industrial y medioambiental donde esa experiencia tenga peso real.
-          </p>
+    <header>
+        <div class="container">
+            <a href="#" class="nav-brand">// FABRICIO TOSO _</a>
+            <div class="tagline">Planta & Código — Automatización Analítica e Ingeniería Digital Aplicada</div>
         </div>
-      </div>
+    </header>
 
-      <div class="fact-stack reveal d2">
-        <div class="fact-block">
-          <div class="fact-key">Ubicación</div>
-          <div class="fact-val">
-            Zaragoza, Casco Antiguo
-            <span class="sub">NIE en regla · Carnet B · Movilidad PLAZA / Utebo / Malpica</span>
-          </div>
+    <main class="container">
+
+        <section style="margin-bottom: 50px;">
+            <h2>Enfoque de Operación Avanzada: El Terreno Digitalizado</h2>
+            <p>La digitalización industrial no consiste en almacenar datos estáticos en hojas de cálculo aisladas; consiste en transferir la cinética y las variables del laboratorio directamente al plano lógico de control. Mi perfil unifica la experiencia práctica en plantas potabilizadoras y líneas de alta precisión industrial con el desarrollo de software a medida.</p>
+            <p>A continuación se exponen tres módulos interactivos que simulan la lógica computacional de control aplicada a ensayos analíticos críticos bajo normativas reales de aguas de consumo.</p>
+        </section>
+
+        <section>
+            <h2>Consolas Analíticas de Proceso (Simuladores Web)</h2>
+            <p style="margin-bottom: 30px;">Interactúe con los módulos para observar cómo el código procesa los algoritmos cinéticos y genera diagnósticos operativos en tiempo real.</p>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span>MÓDULO 01 // SIMULADOR DE COAGULACIÓN Y FLOCULACIÓN (JAR-TEST)</span>
+                    <div class="scada-status"><div class="pulse-dot"></div> <span>SCADA ONLINE</span></div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="col-left">
+                        <div class="form-group">
+                            <label>Turbidez Inicial del Agua Bruta (NTU):</label>
+                            <input type="number" id="jt-turb-entrada" class="form-control" value="35" min="1" max="300">
+                        </div>
+                        <div class="form-group">
+                            <label>Consigna de Coagulante [PAC] (mg/L):</label>
+                            <input type="number" id="jt-coagulante" class="form-control" value="18" min="0" max="100">
+                        </div>
+                        <button id="jt-btn" class="btn" onclick="ejecutarJarTest()">Iniciar Secuencia Mecánica</button>
+                    </div>
+                    <div class="col-right">
+                        <div class="progress-bar-bg"><div id="jt-progress" class="progress-bar-fill"></div></div>
+                        <div id="jt-output" class="output-box terminal-text">
+                            Consola lista. Esperando orden de agitación para mezcla rápida (120 RPM)...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span>MÓDULO 02 // DETERMINACIÓN FOTOMÉTRICA DE ALUMINIO RESIDUAL</span>
+                    <div class="scada-status"><div class="pulse-dot"></div> <span>FOTÓMETRO CONECTADO</span></div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="col-left">
+                        <div id="al-step-container">
+                            <p id="al-step-desc" class="terminal-text" style="color: var(--accent); font-weight: bold;">Paso 1 de 4: Carga de alícuota de muestra (25 mL).</p>
+                        </div>
+                        <div class="form-group" id="al-input-group">
+                            <label>Dosis aplicada en Coaguladores (mg/L):</label>
+                            <input type="number" id="al-coagulante-previo" class="form-control" value="20" min="0" max="100">
+                        </div>
+                        <button id="al-btn" class="btn" onclick="avanzarAluminio()">Siguiente Etapa <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <div class="col-right">
+                        <div class="progress-bar-bg"><div id="al-progress" class="progress-bar-fill"></div></div>
+                        <div id="al-vial" class="vial-preview">CELDA VACÍA</div>
+                        <div id="al-output" class="output-box terminal-text">
+                            Espectrofotómetro calibrado a cero. Inserte la cubeta de agua decantada/filtrada.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span>MÓDULO 03 // ANALIZADOR DE AMONIO METÓDICO (SALICILATO)</span>
+                    <div class="scada-status"><div class="pulse-dot"></div> <span>CHEMISTRY MODULE LAYER</span></div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="col-left">
+                        <div id="am-step-container">
+                            <p id="am-step-desc" class="terminal-text" style="color: var(--accent); font-weight: bold;">Paso 1 de 4: Dosificación de reactivo en polvo (Cianurato / Salicilato).</p>
+                        </div>
+                        <div class="form-group" id="am-input-group">
+                            <label>Presencia estimada de Amonio Bruto ($NH_4^+$) (mg/L):</label>
+                            <input type="number" id="am-input-val" class="form-control" value="0.15" step="0.05" min="0" max="5">
+                        </div>
+                        <button id="am-btn" class="btn" onclick="avanzarAmonio()">Disolver Reactivo <i class="fa-solid fa-flask"></i></button>
+                    </div>
+                    <div class="col-right">
+                        <div class="progress-bar-bg"><div id="am-progress" class="progress-bar-fill"></div></div>
+                        <div id="am-vial" class="vial-preview">MUESTRA BASE TRANSPARENTE</div>
+                        <div id="am-output" class="output-box terminal-text">
+                            Esperando adición de reactivos catalizadores para examen cromogénico...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+            <h2>Validación Técnica en Planta</h2>
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-water"></i> <span>Control Operativo Integral de Plantas</span></div>
+                <p>Más de 8 años de experiencia directa en plantas potabilizadoras y de tratamiento. Dominio operacional en sistemas SCADA, control diario de líneas de filtración, purga de fangos y optimización de reactivos químicos mediante calibración de instrumentación en continuo y balances analíticos de laboratorio.</p>
+            </div>
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-industry"></i> <span>Mecanizado e Industrialización Rigurosa</span></div>
+                <p>Trayectoria consolidada en entornos industriales de alta exigencia (mecanizado CNC y ensamblaje de componentes bajo estrictas especificaciones automotrices). Enfoque metódico basado en la repetibilidad, el control de tolerancias críticas y la resiliencia de sistemas electromecánicos.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Fabricio Matías Toso. Ingeniería de Software Aplicada a Variables Físico-Químicas.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: var(--accent);">// Zaragoza, España</p>
         </div>
-        <div class="fact-block">
-          <div class="fact-key">Habilitación profesional</div>
-          <div class="fact-val">
-            PEAC Aragón — SEAG0209
-            <span class="peac-chip">8 de 9 unidades recomendadas · en proceso</span>
-          </div>
-        </div>
-        <div class="fact-block">
-          <div class="fact-key">Formación</div>
-          <div class="fact-val">
-            T.S. Desarrollo Web · T.S. Biotecnología
-            <span class="sub">3 años Ing. Computación (UNC) · GS Telecomunicaciones (IES Río Gallego)</span>
-          </div>
-        </div>
-        <div class="fact-block">
-          <div class="fact-key">Idiomas</div>
-          <div class="fact-val">Español nativo · Inglés B1 · Italiano básico</div>
-        </div>
-        <div class="fact-block">
-          <div class="fact-key">Objetivo</div>
-          <div class="fact-val">
-            Operador de Planta · Técnico de Ensayos · Automatización industrial
-            <span class="sub">Veolia · SAICA · Stellantis · sector medioambiental Zaragoza</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- TRAYECTORIA -->
-<section id="trayectoria" class="s">
-  <div class="s-inner">
-    <div class="s-label reveal">02 · Trayectoria</div>
+    <script>
+        // ==========================================
+        // SCRIPT LÓGICO MÓDULO 01: JAR TEST CONTINUO
+        // ==========================================
+        function ejecutarJarTest() {
+            const turb = parseFloat(document.getElementById('jt-turb-entrada').value) || 0;
+            const dosis = parseFloat(document.getElementById('jt-coagulante').value) || 0;
+            const btn = document.getElementById('jt-btn');
+            const progress = document.getElementById('jt-progress');
+            const out = document.getElementById('jt-output');
 
-    <div class="exp-cards">
+            btn.disabled = true;
+            out.className = "output-box terminal-text process";
+            
+            // FASE 1: Mezcla Rápida
+            progress.style.width = "30%";
+            out.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> [FASE 1/3] MEZCLA RÁPIDA ACTIVADA: Coagulación forzada a 120 RPM para dispersión del PAC...";
 
-      <div class="exp-card reveal d1">
-        <div class="exp-side">
-          <div class="exp-period">DIC 2015<br/>MAY 2024</div>
-          <div class="exp-duration">8.5<small>años</small></div>
-        </div>
-        <div class="exp-main">
-          <div class="exp-role">Operador de Planta Especializado</div>
-          <div class="exp-company">Aguas Cordobesas S.A. — Córdoba, Argentina</div>
-          <p class="exp-desc">
-            Operación continua de planta potabilizadora de escala urbana mediante <strong>SCADA</strong> en turnos rotativos. Dosificación de coagulantes, floculantes, cloro gas y ácido clorhídrico. Análisis físico-químicos y ensayos <strong>Jar-test</strong>. Mantenimiento preventivo de <strong>bombas centrífugas</strong> y dosificadoras. Supervisión de Estación Elevadora con equipos de izaje.
-          </p>
-          <div class="exp-tags">
-            <span class="tag tag-blue">SCADA</span>
-            <span class="tag tag-blue">Potabilización</span>
-            <span class="tag tag-blue">Jar-test</span>
-            <span class="tag tag-blue">Bombas centrífugas</span>
-            <span class="tag tag-blue">Cloro gas</span>
-            <span class="tag tag-blue">Análisis F-Q</span>
-            <span class="tag tag-ghost">Espacios confinados</span>
-            <span class="tag tag-ghost">Trabajo en altura</span>
-          </div>
-          <div class="exp-verified">Certificado oficial Gerencia RRHH · Abril 2026</div>
-        </div>
-      </div>
+            setTimeout(() => {
+                // FASE 2: Floculación
+                progress.style.width = "70%";
+                out.innerHTML = "<i class='fa-solid fa-circle-notch fa-spin'></i> [FASE 2/3] MEZCLA LENTA: Floculación a 30 RPM para crecimiento de microflóculos...";
 
-      <div class="exp-card reveal d2">
-        <div class="exp-side">
-          <div class="exp-period">OCT 2014<br/>DIC 2015</div>
-          <div class="exp-duration">1.2<small>años</small></div>
-        </div>
-        <div class="exp-main">
-          <div class="exp-role">Operario de Mecanizado CNC</div>
-          <div class="exp-company">WEG Motores Eléctricos — Córdoba, Argentina</div>
-          <p class="exp-desc">
-            Mecanizado de piezas para motores eléctricos industriales en <strong>torno CNC, fresadora y mandrinadora</strong>. Lectura de planos técnicos, control dimensional y calidad en proceso.
-          </p>
-          <div class="exp-tags">
-            <span class="tag tag-ghost">Torno CNC</span>
-            <span class="tag tag-ghost">Fresadora</span>
-            <span class="tag tag-ghost">Mandrinadora</span>
-            <span class="tag tag-ghost">Control calidad</span>
-          </div>
-        </div>
-      </div>
+                setTimeout(() => {
+                    // FASE 3: Decantación
+                    progress.style.width = "100%";
+                    out.innerHTML = "<i class='fa-solid fa-hourglass-half fa-spin'></i> [FASE 3/3] DECANTACIÓN: Reposo estático en vaso de precipitación. Sedimentando carga química...";
 
-      <div class="exp-card reveal d3">
-        <div class="exp-side">
-          <div class="exp-period">2013<br/>2014</div>
-          <div class="exp-duration">~1<small>año</small></div>
-        </div>
-        <div class="exp-main">
-          <div class="exp-role">Operario de Montaje en Línea</div>
-          <div class="exp-company">FIAT Chrysler Automobiles — Córdoba, Argentina</div>
-          <p class="exp-desc">Montaje automotriz en cadena de producción de alta exigencia y tiempos estrictos.</p>
-          <div class="exp-tags">
-            <span class="tag tag-ghost">Producción en serie</span>
-            <span class="tag tag-ghost">Línea automotriz</span>
-          </div>
-        </div>
-      </div>
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        progress.style.width = "0%";
+                        
+                        // Algoritmo matemático predictivo
+                        let dosisOptima = 12 + (turb * 0.12);
+                        let delta = Math.abs(dosis - dosisOptima);
+                        let turbResidual = 0.4 + (delta * 0.22);
+                        
+                        if (dosis === 0) turbResidual = turb;
+                        if (dosis > dosisOptima * 2.2) turbResidual += (dosis - dosisOptima * 2.2) * 0.15; // Reestabilización coloidal
+                        
+                        turbResidual = Math.round(Math.max(0.15, turbResidual) * 100) / 100;
+                        let phPost = Math.round((7.3 - (dosis * 0.025)) * 100) / 100;
 
-    </div>
-  </div>
-</section>
+                        let html = `<strong>// INFORME DIGITAL DE PREDICCIÓN:</strong><br>`;
+                        html += `Turbidez Estimada: <strong>${turbResidual} NTU</strong><br>`;
+                        html += `pH Final de Salida: <strong>${phPost}</strong><br>`;
 
-<!-- STACK -->
-<section id="stack" class="s">
-  <div class="s-inner">
-    <div class="s-label reveal">03 · Stack</div>
+                        if (turbResidual <= 1.0 && phPost >= 6.5) {
+                            out.className = "output-box terminal-text success";
+                            html += "<span style='color:var(--accent-success);'>✓ EFICIENCIA DE DOSIS: Coagulación óptima. Apto para el paso por filtros de arena.</span>";
+                        } else if(turbResidual > 1.0 && turbResidual < 5.0) {
+                            out.className = "output-box terminal-text warn";
+                            html += "<span style='color:var(--accent-warn);'>⚠ AJUSTE NECESARIO: Turbidez residual elevada (> 1 NTU). Incrementar dosis PAC o verificar pH.</span>";
+                        } else {
+                            out.className = "output-box terminal-text crit";
+                            html += "<span style='color:var(--accent-crit);'>❌ ALERTA CRÍTICA: Fallo en la decantación. Agua fuera de especificación técnica y legal.</span>";
+                        }
+                        out.innerHTML = html;
+                    }, 1500);
+                }, 1500);
+            }, 1500);
+        }
 
-    <div class="stack-layout">
-      <div class="reveal d1">
-        <div class="stack-group-title">Industrial &amp; Planta</div>
-        <div class="pill-grid">
-          <span class="pill pill-a">SCADA</span>
-          <span class="pill pill-a">Potabilización</span>
-          <span class="pill pill-a">Jar-test</span>
-          <span class="pill pill-a">Bombas centrífugas</span>
-          <span class="pill pill-a">Dosificación química</span>
-          <span class="pill pill-a">Análisis F-Q</span>
-          <span class="pill pill-a">Mantenimiento preventivo</span>
-          <span class="pill pill-c">Torno CNC</span>
-          <span class="pill pill-c">Fresadora</span>
-          <span class="pill pill-c">Espacios confinados ✓</span>
-          <span class="pill pill-c">Trabajo en altura ✓</span>
-        </div>
+        // ==========================================
+        // SCRIPT LÓGICO MÓDULO 02: ALUMINIO FOTÓMETRO
+        // ==========================================
+        let alPaso = 1;
+        function avanzarAluminio() {
+            const desc = document.getElementById('al-step-desc');
+            const progress = document.getElementById('al-progress');
+            const btn = document.getElementById('al-btn');
+            const vial = document.getElementById('al-vial');
+            const out = document.getElementById('al-output');
+            const group = document.getElementById('al-input-group');
+            const dosis = parseFloat(document.getElementById('al-coagulante-previo').value) || 0;
 
-        <div class="stack-group-title">Ciencias</div>
-        <div class="pill-grid">
-          <span class="pill pill-a">Biotecnología industrial</span>
-          <span class="pill pill-a">Análisis de laboratorio</span>
-          <span class="pill pill-c">Microbiología básica</span>
-        </div>
-      </div>
+            if (alPaso === 1) {
+                alPaso = 2;
+                progress.style.width = "33%";
+                desc.innerHTML = "Paso 2 de 4: Adición de Reactivo Tampón Al-1 (Estabilización de pH).";
+                vial.innerHTML = "MUESTRA + REACTIVO 1";
+                vial.style.backgroundColor = "rgba(0, 240, 255, 0.05)";
+                out.innerHTML = "Solución estabilizada. Preparada para adición de indicador cromogénico.";
+                group.style.display = "none";
+            } 
+            else if (alPaso === 2) {
+                alPaso = 3;
+                progress.style.width = "66%";
+                desc.innerHTML = "Paso 3 de 4: Adición de Reactivo Indicador Al-2 (Desarrollo Cromático).";
+                btn.disabled = true;
+                
+                let cuenta = 3;
+                out.innerHTML = `Cronómetro de reacción activado. Esperando formación de complejos cromáticos: ${cuenta}s...`;
+                vial.innerHTML = "REACCIÓN EN CURSO...";
+                vial.style.backgroundColor = "rgba(255, 170, 0, 0.15)";
+                
+                let timer = setInterval(() => {
+                    cuenta--;
+                    if (cuenta > 0) {
+                        out.innerHTML = `Cronómetro de reacción activado. Esperando formación de complejos cromáticos: ${cuenta}s...`;
+                    } else {
+                        clearInterval(timer);
+                        alPaso = 4;
+                        progress.style.width = "100%";
+                        desc.innerHTML = "Paso 4 de 4: Lectura del haz Espectrofotométrico.";
+                        btn.disabled = false;
+                        btn.innerHTML = "Ejecutar Lectura de Absorbancia";
+                        vial.innerHTML = "REACCIÓN COMPLETADA";
+                        vial.style.backgroundColor = "rgba(255, 85, 0, 0.25)";
+                        out.innerHTML = "Estabilización de color finalizada. Filtro óptico alineado.";
+                    }
+                }, 1000);
+            } 
+            else if (alPaso === 4) {
+                // Algoritmo aluminio residual disuelto basado en PAC aplicado
+                let residual = 0.03 + (dosis * 0.004);
+                if (dosis > 22) residual += (dosis - 22) * 0.025; // Exceso crítico
+                residual = Math.round(residual * 1000) / 1000;
 
-      <div class="reveal d2">
-        <div class="stack-group-title">Desarrollo de Software</div>
-        <div class="pill-grid">
-          <span class="pill pill-b">Java</span>
-          <span class="pill pill-b">Spring Boot</span>
-          <span class="pill pill-b">Angular</span>
-          <span class="pill pill-b">TypeScript</span>
-          <span class="pill pill-b">Python</span>
-          <span class="pill pill-b">SQL</span>
-          <span class="pill pill-b">HTML · CSS · JS</span>
-          <span class="pill pill-c">Git / GitHub</span>
-          <span class="pill pill-c">REST APIs</span>
-          <span class="pill pill-c">Linux básico</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+                let html = `<strong>// RESULTADO DEL ANÁLISIS DIGITAL:</strong><br>`;
+                html += `Concentración de Aluminio Total ($Al^{3+}$): <strong>${residual} mg/L</strong><br>`;
 
-<!-- PROYECTOS -->
-<section id="proyectos" class="s">
-  <div class="s-inner">
-    <div class="s-label reveal">04 · Proyectos</div>
+                if (residual <= 0.200) {
+                    out.className = "output-box terminal-text success";
+                    html += "<span style='color:var(--accent-success);'>✓ CONFORME CON RD 3/2023: Concentración por debajo del umbral sanitario estricto (0.2 mg/L).</span>";
+                } else {
+                    out.className = "output-box terminal-text crit";
+                    html += "<span style='color:var(--accent-crit);'>❌ INCUMPLE NORMATIVA SANITARIA: Valores superiores a 0.200 mg/L. Riesgo inmediato de post-precipitación e incrustaciones en la red de distribución.</span>";
+                }
+                out.innerHTML = html;
+                btn.innerHTML = "Limpiar y Reiniciar Fotómetro";
+                alPaso = 5;
+            } 
+            else if (alPaso === 5) {
+                alPaso = 1;
+                progress.style.width = "0%";
+                desc.innerHTML = "Paso 1 de 4: Carga de alícuota de muestra (25 mL).";
+                vial.innerHTML = "CELDA VACÍA";
+                vial.style.backgroundColor = "rgba(255,255,255,0.03)";
+                out.className = "output-box terminal-text";
+                out.innerHTML = "Espectrofotómetro calibrado a cero. Inserte la cubeta de agua decantada/filtrada.";
+                group.style.display = "block";
+                btn.innerHTML = "Siguiente Etapa <i class='fa-solid fa-arrow-right'></i>";
+            }
+        }
 
-    <div class="proj-grid">
-      <div class="proj-card reveal d1">
-        <div class="proj-idx">001</div>
-        <div class="proj-name">Sistema de Inventarios</div>
-        <p class="proj-desc">Aplicación web para gestión de stock industrial. CRUD completo, autenticación y reportes exportables.</p>
-        <div class="proj-tags">
-          <span class="tag tag-green">Java</span>
-          <span class="tag tag-green">Spring Boot</span>
-          <span class="tag tag-ghost">Web App</span>
-        </div>
-        <a href="https://github.com/FaMatias/Sistema_inventarios" target="_blank" class="proj-link">GitHub</a>
-      </div>
+        // ==========================================
+        // SCRIPT LÓGICO MÓDULO 03: AMONIO (NUEVO)
+        // ==========================================
+        let amPaso = 1;
+        function avanzarAmonio() {
+            const desc = document.getElementById('am-step-desc');
+            const progress = document.getElementById('am-progress');
+            const btn = document.getElementById('am-btn');
+            const vial = document.getElementById('am-vial');
+            const out = document.getElementById('am-output');
+            const group = document.getElementById('am-input-group');
+            const bruto = parseFloat(document.getElementById('am-input-val').value) || 0;
 
-      <div class="proj-card reveal d2">
-        <div class="proj-idx">002</div>
-        <div class="proj-name">Vinos Argentina</div>
-        <p class="proj-desc">Explorador de datos de producción vitivinícola. Filtros dinámicos y visualización con Angular.</p>
-        <div class="proj-tags">
-          <span class="tag tag-green">Angular</span>
-          <span class="tag tag-green">TypeScript</span>
-          <span class="tag tag-ghost">Data viz</span>
-        </div>
-        <a href="https://github.com/FaMatias/Vinos_Argentina" target="_blank" class="proj-link">GitHub</a>
-      </div>
+            if (amPaso === 1) {
+                amPaso = 2;
+                progress.style.width = "33%";
+                desc.innerHTML = "Paso 2 de 4: Adición de Reactivo Cianurato de Amonio (Catalizador en polvo).";
+                vial.innerHTML = "MUESTRA AGITADA - DISOLVIENDO";
+                vial.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
+                out.innerHTML = "Polvo disuelto completamente. Proceda a incorporar el reactivo activador de color.";
+                group.style.display = "none";
+                btn.innerHTML = "Añadir Reactivo Salicilato <i class='fa-solid fa-droplet'></i>";
+            } 
+            else if (amPaso === 2) {
+                amPaso = 3;
+                progress.style.width = "66%";
+                desc.innerHTML = "Paso 3 de 4: Adición de Reactivo Salicilato (Período estricto de desarrollo: 20 min).";
+                btn.disabled = true;
+                
+                let cuenta = 4;
+                out.innerHTML = `Activando temporizador químico. Formando complejo Verde de Indofenol: Reacción en curso (${cuenta}s)...`;
+                vial.innerHTML = "CAMBIO DE COLOR EN PROGRESO...";
+                
+                // Variamos el color del vial dinámicamente según la cantidad de amonio ingresada
+                if (bruto > 0.5) {
+                    vial.style.backgroundColor = "rgba(0, 100, 80, 0.4)"; // Verde oscuro / azulado si es muy tóxico
+                } else {
+                    vial.style.backgroundColor = "rgba(100, 200, 50, 0.2)"; // Verde claro si es normal
+                }
+                
+                let timer = setInterval(() => {
+                    cuenta--;
+                    if (cuenta > 0) {
+                        out.innerHTML = `Activando temporizador químico. Formando complejo Verde de Indofenol: Reacción en curso (${cuenta}s)...`;
+                    } else {
+                        clearInterval(timer);
+                        amPaso = 4;
+                        progress.style.width = "100%";
+                        desc.innerHTML = "Paso 4 de 4: Medición de Intensidad Lumínica.";
+                        btn.disabled = false;
+                        btn.innerHTML = "Analizar Concentración de $NH_4^+$";
+                        vial.innerHTML = "COLOR ESTABLECIDO";
+                        out.innerHTML = "Complejo molecular maduro. Sensor listo para fotometría final.";
+                    }
+                }, 1000);
+            } 
+            else if (amPaso === 4) {
+                let medido = bruto; // Simulación analítica directa
+                let html = `<strong>// EVALUACIÓN DE COMPLEJOS DE NITRÓGENO:</strong><br>`;
+                html += `Concentración de Amonio ($NH_4^+$): <strong>${medido} mg/L</strong><br>`;
 
-      <div class="proj-card reveal d3">
-        <div class="proj-idx">003</div>
-        <div class="proj-name">Stock de Vinos Exóticos</div>
-        <p class="proj-desc">Gestión de stock especializado con alertas de mínimos y panel de estado.</p>
-        <div class="proj-tags">
-          <span class="tag tag-green">JavaScript</span>
-          <span class="tag tag-green">SQL</span>
-          <span class="tag tag-ghost">Gestión</span>
-        </div>
-        <a href="https://github.com/FaMatias/Stock-de-Vinos-Ex-ticos" target="_blank" class="proj-link">GitHub</a>
-      </div>
-
-      <div class="proj-card reveal d1">
-        <div class="proj-idx">004</div>
-        <div class="proj-name">Simple Links</div>
-        <p class="proj-desc">Página de enlaces personalizada. HTML/CSS puro desplegada en GitHub Pages.</p>
-        <div class="proj-tags">
-          <span class="tag tag-green">HTML</span>
-          <span class="tag tag-green">CSS</span>
-          <span class="tag tag-ghost">Static</span>
-        </div>
-        <a href="https://famatias.github.io/Simple-Links/index.html" target="_blank" class="proj-link">Ver en vivo</a>
-      </div>
-
-      <div class="proj-card reveal d2">
-        <div class="proj-idx">005</div>
-        <div class="proj-name">Tablero Kanban</div>
-        <p class="proj-desc">Gestión visual de tareas con columnas configurables y persistencia local.</p>
-        <div class="proj-tags">
-          <span class="tag tag-green">JavaScript</span>
-          <span class="tag tag-green">CSS</span>
-          <span class="tag tag-ghost">Productividad</span>
-        </div>
-        <a href="https://github.com/FaMatias" target="_blank" class="proj-link">GitHub</a>
-      </div>
-
-      <div class="proj-card reveal d3">
-        <div class="proj-idx">006</div>
-        <div class="proj-name">Pizarra Colaborativa</div>
-        <p class="proj-desc">Canvas en tiempo real para trabajo en equipo. WebSockets + Canvas API.</p>
-        <div class="proj-tags">
-          <span class="tag tag-green">WebSockets</span>
-          <span class="tag tag-green">Canvas API</span>
-          <span class="tag tag-ghost">Real-time</span>
-        </div>
-        <a href="https://github.com/FaMatias" target="_blank" class="proj-link">GitHub</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACTO -->
-<section id="contacto" class="s">
-  <div class="s-inner">
-    <div class="s-label reveal">05 · Contacto</div>
-
-    <h2 class="contact-hero reveal">
-      Hablemos.<br/><span class="accent">Sin rodeos.</span>
-    </h2>
-
-    <div class="contact-split">
-      <div class="reveal d1">
-        <p class="contact-text">
-          Si necesitás un operador de planta con experiencia real en SCADA y tratamiento de agua, o un perfil técnico que también entiende el software — soy esa persona. Disponible para incorporación inmediata en Zaragoza y alrededores.
-        </p>
-        <div class="contact-row">
-          <a href="mailto:fabricio.toso@gmail.com" class="c-link">
-            <span class="c-link-icon">✉</span>
-            <span class="c-link-label">fabricio.toso@gmail.com</span>
-            <span class="c-link-arr">→</span>
-          </a>
-          <a href="https://linkedin.com/in/fabricio-matias-toso" target="_blank" class="c-link">
-            <span class="c-link-icon">in</span>
-            <span class="c-link-label">linkedin.com/in/fabricio-matias-toso</span>
-            <span class="c-link-arr">→</span>
-          </a>
-          <a href="https://github.com/FaMatias" target="_blank" class="c-link">
-            <span class="c-link-icon">gh</span>
-            <span class="c-link-label">github.com/FaMatias</span>
-            <span class="c-link-arr">→</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="avail-card reveal d2">
-        <div class="avail-top">Disponibilidad actual</div>
-        <div class="avail-body">
-          <p>Carnet B, movilidad propia. Disponible para <strong>turnos rotativos</strong> en zonas PLAZA, Utebo y Malpica.</p>
-          <p>PEAC en curso — <strong>8 de 9 unidades de competencia</strong> del certificado SEAG0209 recomendadas para evaluación. Experiencia avalada por certificado oficial de Aguas Cordobesas (RRHH, abril 2026).</p>
-          <p>Perfiles que me interesan: <strong>Veolia, SAICA, Stellantis</strong> y sector medioambiental e industrial de Zaragoza.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-l">© 2025 <span>Fabricio Matías Toso</span> · Zaragoza</div>
-  <div class="footer-r">famatias.github.io/dev</div>
-</footer>
-
-<script>
-  const navBtn = document.getElementById('nav-btn');
-  const mobMenu = document.getElementById('mob-menu');
-  navBtn.addEventListener('click', () => mobMenu.classList.toggle('open'));
-  mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobMenu.classList.remove('open')));
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+                // Límite paramétrico estándar según Directiva Europea/RD de aguas de consumo: 0.50 mg/L
+                if (medido <= 0.50) {
+                    out.className = "output-box terminal-text success";
+                    html += "<span style='color:var(--accent-success);'>✓ BAJO EL LÍMITE NORMATIVO: Concentración segura (&lt; 0.50 mg/L). Proceso de nitrificación controlado.</span>";
+                } else {
+                    out.className = "output-box terminal-text crit";
+                    html += "<span style='color:var(--accent-crit);'>❌ ALERTA CRÍTICA: Amonio superior al límite legal (0.50 mg/L). Peligro de reducción del cloro libre y proliferación microbiológica. Ajustar pre-cloración.</span>";
+                }
+                out.innerHTML = html;
+                btn.innerHTML = "Reiniciar Módulo Amonio";
+                amPaso = 5;
+            } 
+            else if (amPaso === 5) {
+                amPaso = 1;
+                progress.style.width = "0%";
+                desc.innerHTML = "Paso 1 de 4: Dosificación de reactivo en polvo (Cianurato / Salicilato).";
+                vial.innerHTML = "MUESTRA BASE TRANSPARENTE";
+                vial.style.backgroundColor = "rgba(255,255,255,0.03)";
+                out.className = "output-box terminal-text";
+                out.innerHTML = "Esperando adición de reactivos catalizadores para examen cromogénico...";
+                group.style.display = "block";
+                btn.innerHTML = "Disolver Reactivo <i class='fa-solid fa-flask'></i>";
+            }
+        }
+    </script>
 </body>
 </html>
