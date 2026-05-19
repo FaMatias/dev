@@ -128,7 +128,7 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 24px;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.5);
         }
 
@@ -157,6 +157,10 @@
             background-color: var(--accent-success);
             border-radius: 50%;
             animation: pulse 1.5s infinite;
+        }
+
+        .pulse-dot.crit {
+            background-color: var(--accent-crit);
         }
 
         @keyframes pulse {
@@ -269,6 +273,7 @@
             justify-content: center;
             font-size: 0.8rem;
             color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .badge {
@@ -306,21 +311,20 @@
     <main class="container">
 
         <section style="margin-bottom: 50px;">
-            <h2>Enfoque de Operación Avanzada: El Terreno Digitalizado</h2>
-            <p>La digitalización industrial no consiste en almacenar datos estáticos en hojas de cálculo aisladas; consiste en transferir la cinética y las variables del laboratorio directamente al plano lógico de control. Mi perfil unifica la experiencia práctica en plantas potabilizadoras y líneas de alta precisión industrial con el desarrollo de software a medida.</p>
-            <p>A continuación se exponen tres módulos interactivos que simulan la lógica computacional de control aplicada a ensayos analíticos críticos bajo normativas reales de aguas de consumo.</p>
+            <h2>Enfoque Operativo Transversal: El Terreno Digitalizado</h2>
+            <p>La digitalización avanzada de infraestructuras críticas no se limita a graficar variables analíticas aisladas. El verdadero rendimiento industrial radica en la capacidad de conectar la cinética química del laboratorio con los sistemas mecánicos de control y la optimización logística del inventario de reactivos.</p>
+            <p>Mi perfil combina años de experiencia analítica en plantas potabilizadoras y de tratamiento de agua con el diseño lógico de software robusto, transformando flujos tradicionales en arquitecturas digitales de control interactivo.</p>
         </section>
 
         <section>
-            <h2>Consolas Analíticas de Proceso (Simuladores Web)</h2>
-            <p style="margin-bottom: 30px;">Interactúe con los módulos para observar cómo el código procesa los algoritmos cinéticos y genera diagnósticos operativos en tiempo real.</p>
+            <h2>Consolas Analíticas y Paneles SCADA Interactivos</h2>
+            <p style="margin-bottom: 30px;">Interactúe con los cinco entornos lógicos desarrollados para simular la gestión, el análisis químico y la automatización mecánica en tiempo real.</p>
 
             <div class="terminal">
                 <div class="terminal-header">
                     <span>MÓDULO 01 // SIMULADOR DE COAGULACIÓN Y FLOCULACIÓN (JAR-TEST)</span>
-                    <div class="scada-status"><div class="pulse-dot"></div> <span>SCADA ONLINE</span></div>
+                    <div class="scada-status"><div class="pulse-dot"></div> <span>AGITADORES ONLINE</span></div>
                 </div>
-                
                 <div class="grid-2">
                     <div class="col-left">
                         <div class="form-group">
@@ -347,7 +351,6 @@
                     <span>MÓDULO 02 // DETERMINACIÓN FOTOMÉTRICA DE ALUMINIO RESIDUAL</span>
                     <div class="scada-status"><div class="pulse-dot"></div> <span>FOTÓMETRO CONECTADO</span></div>
                 </div>
-                
                 <div class="grid-2">
                     <div class="col-left">
                         <div id="al-step-container">
@@ -372,16 +375,15 @@
             <div class="terminal">
                 <div class="terminal-header">
                     <span>MÓDULO 03 // ANALIZADOR DE AMONIO METÓDICO (SALICILATO)</span>
-                    <div class="scada-status"><div class="pulse-dot"></div> <span>CHEMISTRY MODULE LAYER</span></div>
+                    <div class="scada-status"><div class="pulse-dot"></div> <span>CHEMISTRY LAYER ONLINE</span></div>
                 </div>
-                
                 <div class="grid-2">
                     <div class="col-left">
                         <div id="am-step-container">
                             <p id="am-step-desc" class="terminal-text" style="color: var(--accent); font-weight: bold;">Paso 1 de 4: Dosificación de reactivo en polvo (Cianurato / Salicilato).</p>
                         </div>
                         <div class="form-group" id="am-input-group">
-                            <label>Presencia estimada de Amonio Bruto ($NH_4^+$) (mg/L):</label>
+                            <label>Presencia estimada de Amonio Bruto (NH₄⁺) (mg/L):</label>
                             <input type="number" id="am-input-val" class="form-control" value="0.15" step="0.05" min="0" max="5">
                         </div>
                         <button id="am-btn" class="btn" onclick="avanzarAmonio()">Disolver Reactivo <i class="fa-solid fa-flask"></i></button>
@@ -396,17 +398,69 @@
                 </div>
             </div>
 
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span>MÓDULO 04 // BALANCE DE MASAS Y AUTOMATIZACIÓN DE INVENTARIO LOGÍSTICO</span>
+                    <div class="scada-status" id="stock-scada-status"><div class="pulse-dot"></div> <span>LOGISTICS API CONNECTED</span></div>
+                </div>
+                <div class="grid-2">
+                    <div class="col-left">
+                        <div class="form-group">
+                            <label>Caudal Operativo de la Planta (m³/h):</label>
+                            <input type="number" id="st-flow" class="form-control" value="450" min="10" max="3000">
+                        </div>
+                        <div class="form-group">
+                            <label>Dosis Automática de Coagulante PAC (mg/L):</label>
+                            <input type="number" id="st-dosage" class="form-control" value="22" min="1" max="80">
+                        </div>
+                        <div class="form-group">
+                            <label>Nivel Físico Actual del Silo (kg):</label>
+                            <input type="number" id="st-inventory" class="form-control" value="480" min="0" max="25000">
+                        </div>
+                        <button id="st-btn" class="btn" onclick="calcularStockQuimico()">Calcular Métricas Logísticas</button>
+                    </div>
+                    <div class="col-right">
+                        <div id="st-output" class="output-box terminal-text">
+                            Introduzca las variables de flujo e inventario para calcular el consumo diario y autonomía operativa...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span>MÓDULO 05 // PANEL SINÓPTICO SCADA: SISTEMA DE CONTRALAVADO DE FILTROS</span>
+                    <div class="scada-status" id="scada-filter-status"><div class="pulse-dot" id="filter-dot"></div> <span id="filter-status-text">BATERÍA EN REGIMEN NORMAL</span></div>
+                </div>
+                <div class="grid-2">
+                    <div class="col-left">
+                        <p class="terminal-text" style="font-size: 0.85rem; margin-bottom: 10px;">// Variables críticas de Presión de Arena</p>
+                        <div class="form-group">
+                            <label>Presencia de Colmatación - Pérdida de Carga (ΔP - bar):</label>
+                            <input type="number" id="sc-dp" class="form-control" value="0.95" step="0.05" min="0.1" max="2.5" onchange="verificarPresionFiltros()">
+                        </div>
+                        <button id="sc-btn" class="btn" onclick="iniciarContralavado()">Forzar Ciclo Automático SCADA</button>
+                    </div>
+                    <div class="col-right">
+                        <div class="progress-bar-bg"><div id="sc-progress" class="progress-bar-fill"></div></div>
+                        <div id="sc-output" class="output-box terminal-text warn">
+                            ⚠ ALERTA SCADA: Elevada pérdida de carga detectada (ΔP > 0.8 bar). Filtro obstruído por acumulación de flóculos. Se requiere contralavado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <section>
-            <h2>Validación Técnica en Planta</h2>
+            <h2>Validación Técnica en Infraestructura</h2>
             <div class="card">
-                <div class="card-title"><i class="fa-solid fa-water"></i> <span>Control Operativo Integral de Plantas</span></div>
-                <p>Más de 8 años de experiencia directa en plantas potabilizadoras y de tratamiento. Dominio operacional en sistemas SCADA, control diario de líneas de filtración, purga de fangos y optimización de reactivos químicos mediante calibración de instrumentación en continuo y balances analíticos de laboratorio.</p>
+                <div class="card-title"><i class="fa-solid fa-water"></i> <span>Control Operativo de Plantas de Agua</span></div>
+                <p>Más de 8 años al frente de sistemas críticos de potabilización y distribución. Gestión fluida mediante terminales SCADA, optimización analítica en laboratorio físico, calibración fina de instrumentación en continuo y mantenimiento de líneas complejas de reactivos bajo estrictas normativas sanitarias.</p>
             </div>
             <div class="card">
-                <div class="card-title"><i class="fa-solid fa-industry"></i> <span>Mecanizado e Industrialización Rigurosa</span></div>
-                <p>Trayectoria consolidada en entornos industriales de alta exigencia (mecanizado CNC y ensamblaje de componentes bajo estrictas especificaciones automotrices). Enfoque metódico basado en la repetibilidad, el control de tolerancias críticas y la resiliencia de sistemas electromecánicos.</p>
+                <div class="card-title"><i class="fa-solid fa-industry"></i> <span>Mecanizado e Industrialización de Precisión</span></div>
+                <p>Comprensión profunda de la resiliencia mecánica y los estándares automatizados en líneas de producción repetitivas de alta tolerancia (mecanizado CNC y ensamblaje de componentes automotrices). Enfoque analítico orientado a la optimización de procesos de transformación industrial.</p>
             </div>
         </section>
     </main>
@@ -432,17 +486,14 @@
             btn.disabled = true;
             out.className = "output-box terminal-text process";
             
-            // FASE 1: Mezcla Rápida
             progress.style.width = "30%";
             out.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> [FASE 1/3] MEZCLA RÁPIDA ACTIVADA: Coagulación forzada a 120 RPM para dispersión del PAC...";
 
             setTimeout(() => {
-                // FASE 2: Floculación
                 progress.style.width = "70%";
                 out.innerHTML = "<i class='fa-solid fa-circle-notch fa-spin'></i> [FASE 2/3] MEZCLA LENTA: Floculación a 30 RPM para crecimiento de microflóculos...";
 
                 setTimeout(() => {
-                    // FASE 3: Decantación
                     progress.style.width = "100%";
                     out.innerHTML = "<i class='fa-solid fa-hourglass-half fa-spin'></i> [FASE 3/3] DECANTACIÓN: Reposo estático en vaso de precipitación. Sedimentando carga química...";
 
@@ -450,13 +501,12 @@
                         btn.disabled = false;
                         progress.style.width = "0%";
                         
-                        // Algoritmo matemático predictivo
                         let dosisOptima = 12 + (turb * 0.12);
                         let delta = Math.abs(dosis - dosisOptima);
                         let turbResidual = 0.4 + (delta * 0.22);
                         
                         if (dosis === 0) turbResidual = turb;
-                        if (dosis > dosisOptima * 2.2) turbResidual += (dosis - dosisOptima * 2.2) * 0.15; // Reestabilización coloidal
+                        if (dosis > dosisOptima * 2.2) turbResidual += (dosis - dosisOptima * 2.2) * 0.15; 
                         
                         turbResidual = Math.round(Math.max(0.15, turbResidual) * 100) / 100;
                         let phPost = Math.round((7.3 - (dosis * 0.025)) * 100) / 100;
@@ -500,7 +550,7 @@
                 desc.innerHTML = "Paso 2 de 4: Adición de Reactivo Tampón Al-1 (Estabilización de pH).";
                 vial.innerHTML = "MUESTRA + REACTIVO 1";
                 vial.style.backgroundColor = "rgba(0, 240, 255, 0.05)";
-                out.innerHTML = "Solución estabilizada. Preparada para adición de indicador cromogénico.";
+                out.innerHTML = "Solución de muestra regulada. Preparada para adición de indicador de espectro.";
                 group.style.display = "none";
             } 
             else if (alPaso === 2) {
@@ -527,25 +577,24 @@
                         btn.innerHTML = "Ejecutar Lectura de Absorbancia";
                         vial.innerHTML = "REACCIÓN COMPLETADA";
                         vial.style.backgroundColor = "rgba(255, 85, 0, 0.25)";
-                        out.innerHTML = "Estabilización de color finalizada. Filtro óptico alineado.";
+                        out.innerHTML = "Estabilización molecular finalizada. Fotodiodo alineado a cero.";
                     }
                 }, 1000);
             } 
             else if (alPaso === 4) {
-                // Algoritmo aluminio residual disuelto basado en PAC aplicado
                 let residual = 0.03 + (dosis * 0.004);
-                if (dosis > 22) residual += (dosis - 22) * 0.025; // Exceso crítico
+                if (dosis > 22) residual += (dosis - 22) * 0.025; 
                 residual = Math.round(residual * 1000) / 1000;
 
                 let html = `<strong>// RESULTADO DEL ANÁLISIS DIGITAL:</strong><br>`;
-                html += `Concentración de Aluminio Total ($Al^{3+}$): <strong>${residual} mg/L</strong><br>`;
+                html += `Concentración de Aluminio Total (Al³⁺): <strong>${residual} mg/L</strong><br>`;
 
                 if (residual <= 0.200) {
                     out.className = "output-box terminal-text success";
-                    html += "<span style='color:var(--accent-success);'>✓ CONFORME CON RD 3/2023: Concentración por debajo del umbral sanitario estricto (0.2 mg/L).</span>";
+                    html += "<span style='color:var(--accent-success);'>✓ CONFORME CON RD 3/2023: Concentración segura por debajo del umbral sanitario legal (0.2 mg/L).</span>";
                 } else {
                     out.className = "output-box terminal-text crit";
-                    html += "<span style='color:var(--accent-crit);'>❌ INCUMPLE NORMATIVA SANITARIA: Valores superiores a 0.200 mg/L. Riesgo inmediato de post-precipitación e incrustaciones en la red de distribución.</span>";
+                    html += "<span style='color:var(--accent-crit);'>❌ ALERTA SANITARIA: Supera los 0.200 mg/L. Riesgo inmediato de post-precipitación coloidal en la red de abastecimiento urbano.</span>";
                 }
                 out.innerHTML = html;
                 btn.innerHTML = "Limpiar y Reiniciar Fotómetro";
@@ -565,7 +614,7 @@
         }
 
         // ==========================================
-        // SCRIPT LÓGICO MÓDULO 03: AMONIO (NUEVO)
+        // SCRIPT LÓGICO MÓDULO 03: AMONIO (SALICILATO)
         // ==========================================
         let amPaso = 1;
         function avanzarAmonio() {
@@ -583,25 +632,24 @@
                 desc.innerHTML = "Paso 2 de 4: Adición de Reactivo Cianurato de Amonio (Catalizador en polvo).";
                 vial.innerHTML = "MUESTRA AGITADA - DISOLVIENDO";
                 vial.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-                out.innerHTML = "Polvo disuelto completamente. Proceda a incorporar el reactivo activador de color.";
+                out.innerHTML = "Reactivos en polvo homogeneizados. Proceda a incorporar el activador salicílico.";
                 group.style.display = "none";
                 btn.innerHTML = "Añadir Reactivo Salicilato <i class='fa-solid fa-droplet'></i>";
             } 
             else if (amPaso === 2) {
                 amPaso = 3;
                 progress.style.width = "66%";
-                desc.innerHTML = "Paso 3 de 4: Adición de Reactivo Salicilato (Período estricto de desarrollo: 20 min).";
+                desc.innerHTML = "Paso 3 de 4: Adición de Reactivo Salicilato (Período de reacción estricto).";
                 btn.disabled = true;
                 
                 let cuenta = 4;
                 out.innerHTML = `Activando temporizador químico. Formando complejo Verde de Indofenol: Reacción en curso (${cuenta}s)...`;
                 vial.innerHTML = "CAMBIO DE COLOR EN PROGRESO...";
                 
-                // Variamos el color del vial dinámicamente según la cantidad de amonio ingresada
                 if (bruto > 0.5) {
-                    vial.style.backgroundColor = "rgba(0, 100, 80, 0.4)"; // Verde oscuro / azulado si es muy tóxico
+                    vial.style.backgroundColor = "rgba(0, 100, 80, 0.4)"; 
                 } else {
-                    vial.style.backgroundColor = "rgba(100, 200, 50, 0.2)"; // Verde claro si es normal
+                    vial.style.backgroundColor = "rgba(100, 200, 50, 0.2)"; 
                 }
                 
                 let timer = setInterval(() => {
@@ -612,26 +660,24 @@
                         clearInterval(timer);
                         amPaso = 4;
                         progress.style.width = "100%";
-                        desc.innerHTML = "Paso 4 de 4: Medición de Intensidad Lumínica.";
+                        desc.innerHTML = "Paso 4 de 4: Medición de Absorbancia Fotométrica.";
                         btn.disabled = false;
-                        btn.innerHTML = "Analizar Concentración de $NH_4^+$";
-                        vial.innerHTML = "COLOR ESTABLECIDO";
-                        out.innerHTML = "Complejo molecular maduro. Sensor listo para fotometría final.";
+                        btn.innerHTML = "Analizar Concentración de NH₄⁺";
+                        vial.innerHTML = "COLOR COMPLEJO ESTABLE";
+                        out.innerHTML = "Complejo de color maduro. Sensor óptico preparado para digitalización.";
                     }
                 }, 1000);
             } 
             else if (amPaso === 4) {
-                let medido = bruto; // Simulación analítica directa
                 let html = `<strong>// EVALUACIÓN DE COMPLEJOS DE NITRÓGENO:</strong><br>`;
-                html += `Concentración de Amonio ($NH_4^+$): <strong>${medido} mg/L</strong><br>`;
+                html += `Concentración de Amonio (NH₄⁺): <strong>${bruto} mg/L</strong><br>`;
 
-                // Límite paramétrico estándar según Directiva Europea/RD de aguas de consumo: 0.50 mg/L
-                if (medido <= 0.50) {
+                if (bruto <= 0.50) {
                     out.className = "output-box terminal-text success";
-                    html += "<span style='color:var(--accent-success);'>✓ BAJO EL LÍMITE NORMATIVO: Concentración segura (&lt; 0.50 mg/L). Proceso de nitrificación controlado.</span>";
+                    html += "<span style='color:var(--accent-success);'>✓ BAJO EL LÍMITE REGLAMENTARIO: Parámetro correcto (&lt; 0.50 mg/L). Procesos biológicos estables en cabecera.</span>";
                 } else {
                     out.className = "output-box terminal-text crit";
-                    html += "<span style='color:var(--accent-crit);'>❌ ALERTA CRÍTICA: Amonio superior al límite legal (0.50 mg/L). Peligro de reducción del cloro libre y proliferación microbiológica. Ajustar pre-cloración.</span>";
+                    html += "<span style='color:var(--accent-crit);'>❌ ALERTA DE CONTAMINACIÓN: Amonio crítico superior a la norma de agua de consumo (0.50 mg/L). Interferencia severa con la demanda de cloro.</span>";
                 }
                 out.innerHTML = html;
                 btn.innerHTML = "Reiniciar Módulo Amonio";
@@ -649,6 +695,128 @@
                 btn.innerHTML = "Disolver Reactivo <i class='fa-solid fa-flask'></i>";
             }
         }
+
+        // =========================================================
+        // SCRIPT LÓGICO MÓDULO 04: BALANCE DE STOCK (RETAIL / PLANTA)
+        // =========================================================
+        function calcularStockQuimico() {
+            const flow = parseFloat(document.getElementById('st-flow').value) || 0;
+            const dosage = parseFloat(document.getElementById('st-dosage').value) || 0;
+            const inventory = parseFloat(document.getElementById('st-inventory').value) || 0;
+            const out = document.getElementById('st-output');
+            const dot = document.getElementById('stock-scada-status').querySelector('.pulse-dot');
+
+            // Consumo por hora: Flow (m3/h) * Dosage (g/m3) / 1000 = kg/h
+            let hourlyCons = (flow * dosage) / 1000;
+            let dailyCons = hourlyCons * 24;
+            let autonomyDays = inventory / dailyCons;
+
+            hourlyCons = Math.round(hourlyCons * 100) / 100;
+            dailyCons = Math.round(dailyCons * 100) / 100;
+            autonomyDays = Math.round(autonomyDays * 10) / 10;
+
+            let html = `<strong>// ANÁLISIS DE CONSUMOS E INVENTARIO LOGÍSTICO:</strong><br>`;
+            html += `Consumo Horario de PAC: <strong>${hourlyCons} kg/h</strong><br>`;
+            html += `Consumo Diario Teórico: <strong>${dailyCons} kg/día</strong><br>`;
+            html += `Autonomía del Silo de Almacenamiento: <strong>${autonomyDays} días</strong><br>`;
+
+            if (inventory === 0 || autonomyDays <= 1.5) {
+                out.className = "output-box terminal-text crit";
+                dot.className = "pulse-dot crit";
+                html += `<span style='color:var(--accent-crit);; font-weight:bold;'>❌ CRÍTICO: ROTURA DE STOCK INMINENTE. Autonomía inferior a 48 horas.</span><br>`;
+                html += `<button class='btn' style='margin-top:10px; font-size:0.8rem; padding:6px;' onclick='simularPedidoStock()'><i class="fa-solid fa-truck-ramp-box"></i> Disparar Orden de Compra EDI / Reposición</button>`;
+            } else if (autonomyDays > 1.5 && autonomyDays <= 4.0) {
+                out.className = "output-box terminal-text warn";
+                dot.className = "pulse-dot";
+                html += `<span style='color:var(--accent-warn);'>⚠ ADVERTENCIA: Stock en punto de pedido mínimo (Safety Stock). Programar descarga logística.</span>`;
+            } else {
+                out.className = "output-box terminal-text success";
+                dot.className = "pulse-dot";
+                html += `<span style='color:var(--accent-success);'>✓ INVENTARIO ÓPTIMO: Niveles estables. Parámetros de transformación logística conformes.</span>`;
+            }
+            out.innerHTML = html;
+        }
+
+        function simularPedidoStock() {
+            const out = document.getElementById('st-output');
+            out.innerHTML = "<i class='fa-solid fa-network-wired fa-spin'></i> Conectando con API de proveedores industriales... Procesando orden de reposición automatizada...";
+            setTimeout(() => {
+                document.getElementById('st-inventory').value = 4500;
+                calcularStockQuimico();
+            }, 1500);
+        }
+
+        // =========================================================
+        // SCRIPT LÓGICO MÓDULO 05: SCADA CONTRALAVADO DE FILTROS
+        // =========================================================
+        function verificarPresionFiltros() {
+            const dp = parseFloat(document.getElementById('sc-dp').value) || 0;
+            const out = document.getElementById('sc-output');
+            const headerDot = document.getElementById('filter-dot');
+            const headerText = document.getElementById('filter-status-text');
+
+            if (dp > 0.8) {
+                out.className = "output-box terminal-text warn";
+                headerDot.className = "pulse-dot crit";
+                headerText.innerHTML = "ALERTA SCADA: COLMATACIÓN CRÍTICA DETECTADA";
+                out.innerHTML = `⚠ ALERTA SCADA: Elevada pérdida de carga detectada (ΔP = ${dp} bar). Filtro colmatado por acumulación de sólidos suspendidos. Se requiere ciclo de limpieza urgente.`;
+            } else {
+                out.className = "output-box terminal-text success";
+                headerDot.className = "pulse-dot";
+                headerText.innerHTML = "BATERÍA EN REGIMEN NORMAL";
+                out.innerHTML = `✓ SCADA STATUS: Pérdida de carga nominal aceptable (ΔP = ${dp} bar). Filtros trabajando dentro del rango hidráulico eficiente.`;
+            }
+        }
+
+        function iniciarContralavado() {
+            const btn = document.getElementById('sc-btn');
+            const progress = document.getElementById('sc-progress');
+            const out = document.getElementById('sc-output');
+            const headerDot = document.getElementById('filter-dot');
+            const headerText = document.getElementById('filter-status-text');
+
+            btn.disabled = true;
+            headerDot.className = "pulse-dot crit";
+            headerText.innerHTML = "SCADA: SECUENCIA DE CONTRALAVADO EN CURSO";
+            out.className = "output-box terminal-text process";
+
+            // Fase 1: Cierre de válvulas
+            progress.style.width = "25%";
+            out.innerHTML = "<i class='fa-solid fa-valve fa-spin'></i> [FASE 1/4] AISLAMIENTO: Cerrando válvulas motorizadas de alimentación de agua bruta. Despresurizando reactor...";
+
+            setTimeout(() => {
+                // Fase 2: Aireación
+                progress.style.width = "50%";
+                out.innerHTML = "<i class='fa-solid fa-wind fa-spin'></i> [FASE 2/4] SOPLADO DE AIRE: Inyectando aire comprimido a contracorriente por colectores inferiores para expandir el lecho de arena (3 min simulados)...";
+
+                setTimeout(() => {
+                    // Fase 3: Agua de lavado
+                    progress.style.width = "75%";
+                    out.innerHTML = "<i class='fa-solid fa-faucet-drip fa-spin'></i> [FASE 3/4] AGUA DE LAVADO: Activando electrobombas de lavado. Expulsión de lodos acumulados hacia el canal de purga...";
+
+                    setTimeout(() => {
+                        // Fase 4: Enjuague
+                        progress.style.width = "100%";
+                        out.innerHTML = "<i class='fa-solid fa-water-drop'></i> [FASE 4/4] ASENTAMIENTO: Enjuague de lecho filtrante y purga inicial de agua de lavado. Estabilizando decantación...";
+
+                        setTimeout(() => {
+                            btn.disabled = false;
+                            progress.style.width = "0%";
+                            document.getElementById('sc-dp').value = 0.25; // Reset de presión
+                            headerDot.className = "pulse-dot";
+                            headerText.innerHTML = "BATERÍA EN REGIMEN NORMAL";
+                            out.className = "output-box terminal-text success";
+                            out.innerHTML = "✓ CONTROL AUTOMÁTICO SCADA FINALIZADO: Ciclo completado con éxito. Batería de filtros reasentada y en línea. Pérdida de carga restaurada a 0.25 bar.";
+                        }, 1500);
+                    }, 1500);
+                }, 1500);
+            }, 1500);
+        }
+
+        // Ejecución de verificación inicial
+        window.onload = function() {
+            verificarPresionFiltros();
+        };
     </script>
 </body>
 </html>
