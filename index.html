@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fabricio Toso · Portafolio de Módulos SCADA — Automatización de Plantas de Agua</title>
+<meta name="description" content="Portafolio técnico interactivo de Fabricio Toso: 8 módulos SCADA en tiempo real para potabilización — Jar-Test, fotometría Al, amonio, logística de reactivos, contralavado, estación elevadora, laboratorio analítico y seguridad operacional (HSE)." />
+<meta name="author" content="Fabricio Matías Toso" />
+<meta name="keywords" content="SCADA, potabilización, jar test, coagulación, aluminio residual, amonio, contralavado, estación elevadora, laboratorio agua, fuga de cloro, HSE, Aguas Cordobesas, Planta Los Molinos, automatización industrial, Zaragoza" />
+<meta name="theme-color" content="#08141c" />
+<link rel="canonical" href="/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Fabricio Toso · Portafolio de Módulos SCADA" />
+<meta property="og:description" content="Cinco módulos SCADA interactivos para tratamiento de agua: Jar-Test, fotometría Al, amonio, inventario y contralavado." />
+<meta property="og:url" content="/" />
+<meta property="og:locale" content="es_ES" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Portafolio · Módulos SCADA — Fabricio Toso" />
+<meta name="twitter:description" content="Portafolio técnico con 5 módulos SCADA interactivos para plantas potabilizadoras." />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Person",
+  "name":"Fabricio Matías Toso",
+  "jobTitle":"Ingeniero de Automatización · Plantas de Agua",
+  "address":{"@type":"PostalAddress","addressLocality":"Zaragoza","addressCountry":"ES"},
+  "knowsAbout":["SCADA","Potabilización","Coagulación","Jar Test","Fotometría","Automatización Industrial","Java","Angular"],
+  "url":"/"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<!-- Barra de progreso de lectura -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<header class="site-header" role="banner">
+  <div class="container nav">
+    <a href="#inicio" class="brand" aria-label="Fabricio Toso — Inicio">
+      <span class="brand-logo">F</span>
+      <span class="brand-text">Fabricio<em>Toso</em></span>
+    </a>
+
+    <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
+      <a href="#perfil" data-nav>Perfil</a>
+      <a href="#modulos" data-nav>Módulos</a>
+      <a href="#experiencia" data-nav>Experiencia</a>
+      <a href="#contacto" data-nav>Contacto</a>
+      <a href="#contacto" class="nav-cta">Trabajemos <i class="fa-solid fa-arrow-right"></i></a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primaryNav">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Overlay para menú móvil -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
+
+<main id="contenido" class="container">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="preview-card">
+      <div class="preview-inner">
+        <div class="preview-top" role="status" aria-label="Estado del sistema SCADA">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-label">SCADA · EN LÍNEA</span>
+          <span class="status-meta">PLC&nbsp;01 · OPC-UA</span>
+          <span class="pill">v2.6</span>
+        </div>
+        <div class="preview-nav" aria-label="Telemetría en vivo">
+          <span class="kpi"><b>pH</b> 7.42</span>
+          <span class="kpi"><b>Turb.</b> 0.18 NTU</span>
+          <span class="kpi"><b>Cl₂</b> 0.85 mg/L</span>
+          <span class="kpi"><b>Q</b> 142 L/s</span>
+        </div>
+        <h2 class="preview-title">portafolio <em>integral</em></h2>
+        <p class="preview-sub">Ingeniería digital aplicada a procesos críticos de agua potable.</p>
+        <div class="preview-cards">
+          <div class="mini-card"><strong>Código</strong><p>Stack analítico y SCADA en tiempo real</p></div>
+          <div class="mini-card"><strong>Proyectos</strong><p>5 módulos interactivos validados en planta</p></div>
+        </div>
+      </div>
+      <button class="circle-arrow" aria-label="Ver módulos"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+    </div>
+
+    <div class="tags" id="perfil">
+      <span class="tag tag--accent">INTERACTIVO</span>
+      <span class="tag">JAVA · SPRING BOOT</span>
+      <span class="tag">ANGULAR</span>
+      <span class="tag">SCADA · IIoT</span>
+    </div>
+
+    <h1 class="display">Portafolio<span class="dot">·</span><em>Módulos SCADA</em></h1>
+<p class="lead">Portafolio técnico con <strong>8 módulos interactivos</strong>: Jar-Test, fotometría de aluminio, amonio, balance logístico de reactivos, contralavado de filtros, control de estación elevadora, laboratorio analítico multiparamétrico y panel HSE de fugas de cloro — todo ejecutándose en tu navegador, en tiempo real.</p>
+
+    <div class="hero-actions">
+      <a href="#modulos" class="btn btn-primary">Explorar módulos <i class="fa-solid fa-arrow-down"></i></a>
+      <a href="#contacto" class="btn btn-ghost">Contactar</a>
+    </div>
+  </section>
+
+  <!-- MÓDULOS -->
+  <section id="modulos" class="modules">
+    <header class="section-head">
+      <span class="kicker">// Consolas analíticas</span>
+      <h2 class="section-title">Ocho entornos lógicos, <em>una sola planta digital</em></h2>
+      <p>Interactúa con módulos que simulan química, hidráulica, automatización mecánica y seguridad operacional en tiempo real. Cada panel emite telemetría, alarmas y métricas como un SCADA real — inspirado en operaciones de planta potabilizadora (Los Molinos · Aguas Cordobesas).</p>
+    </header>
+
+    <!-- M01 -->
+    <article class="module" data-module="jar">
+      <header class="module-head">
+        <span class="m-num">01</span>
+        <div>
+          <h3>Simulador de Coagulación y Floculación <em>(Jar-Test)</em></h3>
+          <p class="m-sub">Mezcla rápida 120 RPM · floculación lenta 40 RPM · sedimentación 20 min</p>
+        </div>
+        <span class="status ok"><span class="dot-pulse"></span>AGITADORES EN LÍNEA</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <label>Turbidez inicial del agua bruta (NTU)
+            <input type="number" id="jar-ntu" value="45" min="1" max="500" />
+          </label>
+          <label>Consigna de coagulante [PAC] (mg/L)
+            <input type="number" id="jar-pac" value="22" min="0" max="120" step="0.5" />
+          </label>
+          <button class="btn btn-primary full" id="jar-run">Iniciar secuencia mecánica</button>
+          <div class="bar"><div class="bar-fill" id="jar-bar"></div></div>
+        </div>
+        <div class="readout">
+          <div class="vial" id="jar-vial">MUESTRA EN REPOSO</div>
+          <div class="log" id="jar-log">Consola lista. Esperando orden de agitación para mezcla rápida (120 RPM)…</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- M02 -->
+    <article class="module" data-module="al">
+      <header class="module-head">
+        <span class="m-num">02</span>
+        <div>
+          <h3>Determinación fotométrica de <em>aluminio residual</em></h3>
+          <p class="m-sub">Método eriocromo cianina · λ = 535 nm · LMQ 0,2 mg/L</p>
+        </div>
+        <span class="status ok"><span class="dot-pulse"></span>FOTÓMETRO CONECTADO</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <p class="step" id="al-step">Paso 1 de 4: carga de alícuota (25 mL).</p>
+          <label>Dosis aplicada en coaguladores (mg/L)
+            <input type="number" id="al-dose" value="22" min="0" max="120" step="0.5" />
+          </label>
+          <button class="btn btn-primary full" id="al-next">Siguiente etapa →</button>
+          <button class="btn btn-ghost full" id="al-reset" type="button">Reiniciar ensayo</button>
+        </div>
+        <div class="readout">
+          <div class="vial" id="al-vial">CELDA VACÍA</div>
+          <div class="log" id="al-log">Espectrofotómetro calibrado a cero. Inserte la cubeta de agua decantada/filtrada.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- M03 -->
+    <article class="module" data-module="nh">
+      <header class="module-head">
+        <span class="m-num">03</span>
+        <div>
+          <h3>Analizador de <em>amonio</em> (método salicilato)</h3>
+          <p class="m-sub">Reactivo libre de Nessler · λ = 655 nm · rango 0–1 mg/L NH₄⁺</p>
+        </div>
+        <span class="status ok"><span class="dot-pulse"></span>CAPA QUÍMICA EN LÍNEA</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <p class="step" id="nh-step">Paso 1 de 4: dosificación de reactivo en polvo (cianurato/salicilato).</p>
+          <label>Concentración estimada de amonio (NH₄⁺) (mg/L)
+            <input type="number" id="nh-c" value="0.45" min="0" max="5" step="0.01" />
+          </label>
+          <button class="btn btn-primary full" id="nh-next">Disolver reactivo →</button>
+          <button class="btn btn-ghost full" id="nh-reset" type="button">Reiniciar ensayo</button>
+        </div>
+        <div class="readout">
+          <div class="vial" id="nh-vial">MUESTRA BASE TRANSPARENTE</div>
+          <div class="log" id="nh-log">Esperando adición de reactivos catalizadores para examen cromogénico…</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- M04 -->
+    <article class="module" data-module="log">
+      <header class="module-head">
+        <span class="m-num">04</span>
+        <div>
+          <h3>Balance de masas y <em>automatización logística</em></h3>
+          <p class="m-sub">Consumo diario · autonomía del silo · alarma de stock</p>
+        </div>
+        <span class="status ok"><span class="dot-pulse"></span>API LOGÍSTICA CONECTADA</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <label>Caudal operativo (m³/h)<input type="number" id="lg-q" value="850" min="0" /></label>
+          <label>Dosis automática PAC (mg/L)<input type="number" id="lg-d" value="22" step="0.5" min="0" /></label>
+          <label>Nivel físico del silo (kg)<input type="number" id="lg-s" value="12000" min="0" /></label>
+          <button class="btn btn-primary full" id="lg-run">Calcular métricas logísticas</button>
+        </div>
+        <div class="readout">
+          <div class="kpis" id="lg-kpis">
+            <div class="kpi"><span>L/s equivalente</span><strong>—</strong></div>
+            <div class="kpi"><span>Consumo diario</span><strong>—</strong></div>
+            <div class="kpi"><span>Autonomía del silo</span><strong>—</strong></div>
+            <div class="kpi"><span>Coste mensual estimado</span><strong>—</strong></div>
+          </div>
+          <div class="log" id="lg-log">Introduzca caudal, dosis e inventario para calcular consumo diario y autonomía operativa…</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- M05 -->
+    <article class="module" data-module="bw">
+      <header class="module-head">
+        <span class="m-num">05</span>
+        <div>
+          <h3>Panel SCADA · <em>Contralavado de filtros</em></h3>
+          <p class="m-sub">Detección de colmatación por ΔP · ciclo automático aire+agua</p>
+        </div>
+        <span class="status ok" id="bw-status"><span class="dot-pulse"></span>BATERÍA EN RÉGIMEN NORMAL</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <p class="step">// Variables críticas de presión del lecho</p>
+          <label>Pérdida de carga ΔP (bar)
+            <input type="number" id="bw-dp" value="0.45" min="0" max="2" step="0.01" />
+          </label>
+          <button class="btn btn-primary full" id="bw-run">Forzar ciclo automático SCADA</button>
+          <div class="bar"><div class="bar-fill" id="bw-bar"></div></div>
+        </div>
+        <div class="readout">
+          <div class="log" id="bw-log">Sistema en régimen normal. ΔP dentro de parámetros operativos.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- M06 · Estación Elevadora -->
+    <article class="module" data-module="ps">
+      <header class="module-head">
+        <span class="m-num">06</span>
+        <div>
+          <h3>Estación elevadora · <em>control secuencial de bombas</em></h3>
+          <p class="m-sub">Bombas P-01/02/03 · cisterna 5.000 m³ · presión de red 3,5 bar · rotación horaria</p>
+        </div>
+        <span class="status ok" id="ps-status"><span class="dot-pulse"></span>RÉGIMEN HIDRÁULICO ESTABLE</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <label>Demanda de red (L/s)
+            <input type="number" id="ps-q" value="180" min="0" max="600" />
+          </label>
+          <label>Nivel cisterna de aspiración (%)
+            <input type="number" id="ps-lvl" value="72" min="0" max="100" />
+          </label>
+          <label>Presión consigna de salida (bar)
+            <input type="number" id="ps-p" value="3.5" min="0" max="8" step="0.1" />
+          </label>
+          <button class="btn btn-primary full" id="ps-run">Calcular arranque secuencial</button>
+        </div>
+        <div class="readout">
+          <div class="kpis" id="ps-kpis">
+            <div class="kpi"><span>Bombas en marcha</span><strong>—</strong></div>
+            <div class="kpi"><span>Caudal total</span><strong>—</strong></div>
+            <div class="kpi"><span>Consumo eléctrico</span><strong>—</strong></div>
+            <div class="kpi"><span>Eficiencia energética</span><strong>—</strong></div>
+          </div>
+          <div class="log" id="ps-log">Esperando consigna. La lógica arranca/para bombas según demanda y mantiene presión de red mediante PID + variador de frecuencia.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- M07 · Laboratorio analítico multiparamétrico -->
+    <article class="module" data-module="lab">
+      <header class="module-head">
+        <span class="m-num">07</span>
+        <div>
+          <h3>Laboratorio · <em>ensayos analíticos en continuo</em></h3>
+          <p class="m-sub">DPD libre/total · alcalinidad · dureza · hierro · color · conductividad · validación RD 140/2003</p>
+        </div>
+        <span class="status ok"><span class="dot-pulse"></span>LIMS CONECTADO</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <label>Ensayo
+            <select id="lab-test">
+              <option value="cl">Cloro libre (DPD nº1) — mg/L</option>
+              <option value="clt">Cloro total (DPD nº3) — mg/L</option>
+              <option value="alk">Alcalinidad total — mg CaCO₃/L</option>
+              <option value="hard">Dureza total (EDTA) — mg CaCO₃/L</option>
+              <option value="fe">Hierro total (TPTZ) — mg/L</option>
+              <option value="col">Color verdadero — mg Pt-Co/L</option>
+              <option value="cond">Conductividad — µS/cm</option>
+            </select>
+          </label>
+          <label>Identificación de muestra (punto de toma)
+            <input type="text" id="lab-id" value="P-SAL-01 · Salida planta" />
+          </label>
+          <button class="btn btn-primary full" id="lab-run">Ejecutar ensayo y validar</button>
+          <button class="btn btn-ghost full" id="lab-csv" type="button"><i class="fa-solid fa-file-csv"></i> Exportar planilla CSV</button>
+        </div>
+        <div class="readout">
+          <div class="vial" id="lab-vial">EQUIPO EN STAND-BY</div>
+          <div class="log" id="lab-log">Banco analítico operativo. Seleccione un ensayo y registre la muestra. Cada resultado se valida contra los límites del Código Alimentario / RD 140/2003.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- M08 · HSE · fuga de cloro -->
+    <article class="module" data-module="hse">
+      <header class="module-head">
+        <span class="m-num">08</span>
+        <div>
+          <h3>Seguridad operacional · <em>detección de fuga de Cl₂ / HCl</em></h3>
+          <p class="m-sub">Sensores ambientales sala de cloración · activación de torre neutralizadora · protocolo EPP</p>
+        </div>
+        <span class="status ok" id="hse-status"><span class="dot-pulse"></span>AMBIENTE SEGURO</span>
+      </header>
+      <div class="module-body grid-2">
+        <div class="controls">
+          <label>Gas detectado
+            <select id="hse-gas">
+              <option value="cl2">Cloro gas (Cl₂) — TLV-TWA 0,5 ppm</option>
+              <option value="hcl">Ácido clorhídrico (HCl) — TLV-C 2 ppm</option>
+            </select>
+          </label>
+          <label>Lectura del sensor (ppm)
+            <input type="number" id="hse-ppm" value="0.2" min="0" max="50" step="0.1" />
+          </label>
+          <button class="btn btn-primary full" id="hse-run">Evaluar y disparar protocolo</button>
+          <button class="btn btn-ghost full" id="hse-drill" type="button"><i class="fa-solid fa-bell"></i> Simulacro de emergencia</button>
+        </div>
+        <div class="readout">
+          <div class="kpis" id="hse-kpis">
+            <div class="kpi"><span>Nivel actual</span><strong>—</strong></div>
+            <div class="kpi"><span>Umbral TLV</span><strong>—</strong></div>
+            <div class="kpi"><span>Riesgo</span><strong>—</strong></div>
+            <div class="kpi"><span>Acción SCADA</span><strong>—</strong></div>
+          </div>
+          <div class="log" id="hse-log">Sensores en línea. Vigilancia continua de sala de cloración y depósito de ácido. Capacitación bianual de respuesta a fugas activa.</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia" class="exp">
+    <header class="section-head">
+      <span class="kicker">// Validación técnica</span>
+      <h2 class="section-title">Infraestructura real, <em>código real</em></h2>
+    </header>
+    <div class="grid-2">
+      <article class="card">
+        <h3><i class="fa-solid fa-water"></i> Operador especializado · Aguas Cordobesas (2015–2024)</h3>
+        <p>Casi 9 años como Operador de Planta Especializado en el área de Producción (Planta Los Molinos). Recepción y dosificación de químicos, ejecución de tareas de potabilización, operación SCADA, supervisión de estación elevadora, optimización de pautas de potabilización, extracción de muestras y determinaciones analíticas de laboratorio.</p>
+      </article>
+      <article class="card">
+        <h3><i class="fa-solid fa-shield-halved"></i> Capacitaciones HSE certificadas</h3>
+        <p>Formación bianual continua: prevención de riesgos específicos en planta, EPP, respuesta a fugas de Cl₂ y HCl, espacios confinados, trabajo en altura y caliente, primeros auxilios con RCP, simulacro con equipos autónomos, conducción defensiva y operación de equipos de izaje.</p>
+      </article>
+      <article class="card">
+        <h3><i class="fa-solid fa-flask"></i> Laboratorio y analítica de proceso</h3>
+        <p>Verificación de equipos, extracción de muestras, ensayos químicos y determinaciones analíticas para optimización de pautas operativas: coagulación, desinfección, control de aluminio y amonio residual conforme a normativa sanitaria.</p>
+      </article>
+      <article class="card">
+        <h3><i class="fa-solid fa-gears"></i> Mecanizado · industrialización</h3>
+        <p>Resiliencia mecánica y estándares automatizados en líneas de producción de alta tolerancia (CNC, ensamblaje automotriz). Enfoque analítico orientado a la optimización de procesos industriales.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contact">
+    <header class="section-head">
+      <span class="kicker">// Conectar</span>
+      <h2 class="section-title">¿Hablamos de <em>tu planta</em>?</h2>
+      <p>Disponible para consultoría en digitalización de procesos de agua, integración SCADA y desarrollo de módulos analíticos a medida.</p>
+    </header>
+    <div class="contact-actions">
+      <a href="mailto:fabricio@example.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Escribir correo</a>
+      <a href="#" class="btn btn-ghost"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="#" class="btn btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+  </section>
+</main>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 Fabricio Matías Toso · Ingeniería de software aplicada a variables físico-químicas.</p>
+    <p class="mono">// Zaragoza, España</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
